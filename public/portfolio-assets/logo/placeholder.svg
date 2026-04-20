@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="36" viewBox="0 0 140 36">
+  <!-- Left cyan bracket -->
+  <path d="M9 5 L3 5 L3 31 L9 31" stroke="#00e5ff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Right gold bracket -->
+  <path d="M131 5 L137 5 L137 31 L131 31" stroke="#ffd166" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Placeholder label -->
+  <text
+    x="70" y="22"
+    text-anchor="middle"
+    font-family="IBM Plex Mono, Courier New, monospace"
+    font-size="10.5"
+    font-weight="500"
+    fill="#6b7a95"
+    letter-spacing="3"
+  >YOUR LOGO</text>
+</svg>
