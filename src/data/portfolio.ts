@@ -316,7 +316,7 @@ export const projects: Project[] = [
   },
 ];
 
-/* ─── Collaborators (demo placeholders — CV does not enumerate these) ── */
+/* ─── Collaborators ──────────────────────────────────────────── */
 export interface Collaborator {
   name: string;
   title: string;
@@ -326,34 +326,40 @@ export interface Collaborator {
 
 export const collaborators: Collaborator[] = [
   {
-    name: 'Dr. Maybin Muyeba',
-    title: 'Principal Supervisor',
-    institution: 'University of Salford, United Kingdom',
-    image: 'https://picsum.photos/seed/collab-muyeba/400/500',
+    name:        'Prof. Mo Saraee',
+    title:       'Professor of Data Science',
+    institution: 'School of Science, Engineering & Environment, University of Salford, UK',
+    image:       '/collaborators/mo-saraee.jpg',
   },
   {
-    name: 'Rajon Bardhan',
-    title: 'Research Collaborator',
+    name:        'Dr. Maybin Muyeba',
+    title:       'Lecturer in Data Science',
+    institution: 'School of Science, Engineering & Environment, University of Salford, UK',
+    image:       '/collaborators/maybin-muyeba.jpg',
+  },
+  {
+    name:        'Rajon Bardhan',
+    title:       'Ph.D. Student — Digital Forensics & Machine Learning',
     institution: 'Augusta University, USA',
-    image: 'https://picsum.photos/seed/collab-bardhan/400/500',
+    image:       '/collaborators/rajon-bardhan.jpg',
   },
   {
-    name: 'Shifat Ahmed',
-    title: 'Coordinator & Assistant Professor',
-    institution: 'Dept. of CSE, Southeast University',
-    image: 'https://picsum.photos/seed/collab-shifat/400/500',
+    name:        'Al-Amain',
+    title:       'Research Assistant',
+    institution: 'Dept. of Computer Science, Islamic University of Technology (IUT)',
+    image:       '/collaborators/al-amain.jpg',
   },
   {
-    name: 'Khandaker Mohammad Mohi Uddin',
-    title: 'Assistant Professor',
-    institution: 'Dept. of CSE, Southeast University',
-    image: 'https://picsum.photos/seed/collab-mohi/400/500',
+    name:        'Mirza Nadim Saad',
+    title:       'Research Assistant · Southeast University alumnus',
+    institution: 'Islamic University of Technology (IUT)',
+    image:       '/collaborators/mirza-nadim-saad.jpg',
   },
   {
-    name: 'Additional Collaborator',
-    title: 'Placeholder',
-    institution: 'To be added on request',
-    image: 'https://picsum.photos/seed/collab-placeholder/400/500',
+    name:        'Md. Jahidul Islam',
+    title:       'Undergraduate Researcher',
+    institution: 'Dept. of CSE, Southeast University (SEU)',
+    image:       '/collaborators/jahidul-islam.jpg',
   },
 ];
 
