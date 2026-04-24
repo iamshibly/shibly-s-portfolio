@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, BookOpen, Github, Linkedin, Play } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Play, Orbit } from 'lucide-react';
 import { personalInfo, heroStats } from '../data/portfolio';
 import { useScrollReveal, useCountUp } from '../hooks/useScrollReveal';
 import VideoModal from '../components/VideoModal';
@@ -128,11 +128,17 @@ const HeroSection = () => {
               className="fade-up fade-up-5"
               style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem' }}
             >
-              <a href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <a
+                href={personalInfo.cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download={personalInfo.cvFileName}
+                className="btn-primary"
+              >
                 <ExternalLink size={14} /> View CV
               </a>
-              <a href={personalInfo.socials.scholar} target="_blank" rel="noopener noreferrer" className="btn-outline">
-                <BookOpen size={14} /> Scholar
+              <a href={personalInfo.socials.orcid} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <Orbit size={14} /> ORCID
               </a>
               <a href={personalInfo.socials.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
                 <Github size={14} /> GitHub
