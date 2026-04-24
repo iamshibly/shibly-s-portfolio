@@ -9,7 +9,7 @@ export const personalInfo = {
   nameLast:   'Shibly',
   tagline:    'AI Researcher · CSE Undergraduate, Southeast University',
   description:
-    'Computer Science & Engineering student focused on Deep Learning, Transformers, Federated Learning, and Explainable AI — applying applied AI to healthcare, network security, and decision-support systems.',
+    '"I love designing algorithms from scratch, failing at them, and figuring out why." My high school had a motto - Know Thyself. I never stopped living by it. In research, failure is not the opposite of understanding. It is the beginning of it.',
   email:      'zubayer0ahmad@gmail.com',
   phone:      '+880 1845250202',
   location:   'Narayanganj, Bangladesh',
@@ -30,30 +30,25 @@ export const personalInfo = {
 /* ─── Hero Stats ─────────────────────────────────────────────── */
 export const heroStats: { target: number; label: string }[] = [
   { target: 5,  label: 'Accepted Papers' },
-  { target: 8,  label: 'Papers Under Review' },
+  { target: 8,  label: 'Under Review' },
   { target: 3,  label: 'Projects' },
-  { target: 1,  label: 'Batch Rank' },
+  { target: 1,  label: 'Departmental Rank' },
 ];
 
 /* ─── About ──────────────────────────────────────────────────── */
 export const aboutBio: string[] = [
-  "I am a Computer Science & Engineering student at Southeast University, Dhaka, with a CGPA of 4.00/4.00 and the departmental top rank in CSE.",
-  "My research focuses on Deep Learning, Transformers, Federated Learning, and Explainable AI — bridging theoretical rigor with real-world impact.",
-  "I have contributed to applied AI projects across healthcare (ovarian cancer, PCOS, hepatitis-B, brain tumor MRI), network security (federated intrusion detection), and decision-support systems (loan approval, obesity prediction).",
-  "I collaborate internationally with Dr. Maybin Muyeba (University of Salford, UK) and Rajon Bardhan (Augusta University, USA) on federated learning, evolutionary feature selection, and explainable modeling.",
-  "Inspired by the principle of “Know Thyself,” I value self-discovery, continuous growth, and the craft of doing research that is both rigorous and useful.",
-  "Beyond the lab, I serve as Director of Project Management at Roots of Rise and contribute to community learning initiatives as an Aspire Leaders Program alumnus.",
-  "I am actively seeking Graduate Research Associate opportunities to extend this work in trustworthy, explainable, and federated AI for healthcare.",
+  "I am a <strong>Computer Science and Engineering</strong> (CSE) student at <strong>SEU</strong>, <strong>Bangladesh</strong>. My focus is AI research, specifically federated learning, transformer models, explainable AI, and medical imaging.",
+  "I build systems that tackle real problems in healthcare, finance, and security. I've collaborated with researchers across the <strong>UK</strong> and <strong>USA</strong>, with papers accepted and submitted to conferences like <strong>IEEE FUZZ</strong>, <strong>NeurIPS</strong>, and <strong>ICDM</strong>.",
+  "I also believe in working close to the algorithm, which is reflected in works like <strong>TRUST-GFS</strong> and <strong>UADGE-FS</strong>, where I contributed to designing novel feature selection frameworks from the ground up.",
+  "I'm actively seeking MSc opportunities in Europe, North America, and East Asia where I can push this research further.",
 ];
 
 export const researchInterests: string[] = [
   'Explainable AI (XAI)',
   'Deep Learning',
-  'Transformers',
   'Federated Learning',
   'Feature Selection',
   'Medical Image Analysis',
-  'Evolutionary Optimization',
   'Tabular Representation Learning',
   'Intrusion Detection',
   'Trustworthy ML',
@@ -114,8 +109,8 @@ export const researchPositions: ResearchPosition[] = [
     faculty:    'School of Science, Engineering & Environment',
     variant:    'cyan',
     topics: [
-      'Developed an explainable federated intrusion detection framework based on Empirical-Bernstein certified Bandit-KL mixing with tree stacking — accepted at IEEE FUZZ 2026 (Netherlands, B-core).',
-      'Designed FedBridge++, a privacy-preserving federated self-supervision framework with interpretable transformers for tabular loan approval — accepted at SERA 2026 (USA, C-core).',
+      'Developed an explainable federated intrusion detection framework based on Empirical-Bernstein certified Bandit-KL mixing with tree stacking — accepted at IEEE FUZZ 2026 (<strong>Netherlands, B-core</strong>).',
+      'Designed FedBridge++, a privacy-preserving federated self-supervision framework with interpretable transformers for tabular loan approval — accepted at SERA 2026 (<strong>USA, C-core</strong>).',
     ],
   },
   {
@@ -127,8 +122,8 @@ export const researchPositions: ResearchPosition[] = [
     faculty:    'School of Computer and Cyber Sciences',
     variant:    'gold',
     topics: [
-      'UADGE-FS: Uncertainty-Aware, Dominance-Gated Evolutionary Feature Selection — submitted to ICDM 2026 (China, A*).',
-      'TRUST-GFS: Tie-safe Reliability and Uplift Screening for Target-guided Genetic Feature Selection — submitted to NeurIPS 2026 (A*).',
+      'UADGE-FS: Uncertainty-Aware, Dominance-Gated Evolutionary Feature Selection — submitted to ICDM 2026 (<strong>China, A* flagship</strong>).',
+      'TRUST-GFS: Tie-safe Reliability and Uplift Screening for Target-guided Genetic Feature Selection — submitted to NeurIPS 2026 (<strong>A* flagship</strong>).',
     ],
   },
 ];
@@ -414,24 +409,29 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    groupTitle: 'Core & ML',
+    groupTitle: 'AI / ML Research',
     skills: [
-      { name: 'Federated Learning',           level: 90, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision'] },
-      { name: 'Machine Learning',             level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'ML Algorithms'] },
-      { name: 'Deep Learning & Transformers', level: 92, tags: ['PyTorch', 'TensorFlow', 'Transformers', 'Attention', 'CNNs'] },
-      { name: 'Explainable AI',               level: 90, tags: ['SHAP', 'LIME', 'Grad-CAM', 'PDP', 'ICE', 'ALE'] },
-      { name: 'Agentic AI',                   level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Agents', 'Tools'] },
-      { name: 'Programming',                  level: 88, tags: ['Python', 'C', 'Java', 'Dart'] },
+      { name: 'Deep Learning & Transformers',      level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Federated & Privacy-Preserving ML', level: 88, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision', 'Interpretable'] },
+      { name: 'Explainable AI',                    level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
+      { name: 'Feature Engineering & Selection',   level: 90, tags: ['Genetic FS', 'RFE', 'QUBO', 'Stability'] },
     ],
   },
   {
-    groupTitle: 'Tools & Platforms',
+    groupTitle: 'LLM / Agents',
     skills: [
-      { name: 'Development Tools',     level: 90, tags: ['Git', 'GitHub', 'VS Code', 'LaTeX', 'Overleaf'] },
-      { name: 'LLM Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Chains', 'Output Parsers', 'Prompt Templates'] },
-      { name: 'Data & ML Libraries',   level: 88, tags: ['NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Colab'] },
-      { name: 'Visualization & Apps',  level: 82, tags: ['Streamlit', 'Matplotlib', 'Seaborn'] },
-      { name: 'Databases',             level: 78, tags: ['MySQL', 'MongoDB'] },
+      { name: 'Agent Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Agents', 'Tools'] },
+      { name: 'Retrieval-Augmented Generation', level: 80, tags: ['RAG', 'Vector Stores', 'Embeddings'] },
+      { name: 'Chains & Parsers',        level: 80, tags: ['Chains', 'Output Parsers', 'Prompt Templates'] },
+    ],
+  },
+  {
+    groupTitle: 'Data & Engineering',
+    skills: [
+      { name: 'Data Analysis & Statistics',   level: 88, tags: ['NumPy', 'Pandas', 'Experimental Design'] },
+      { name: 'Programming',                  level: 85, tags: ['Python', 'C', 'Java', 'Dart', 'Flutter'] },
+      { name: 'Tools & Workflows',            level: 85, tags: ['scikit-learn', 'Matplotlib', 'Jupyter', 'Colab', 'Git', 'Overleaf', 'FastAPI', 'Next.js', 'TypeScript'] },
+      { name: 'Databases & Productivity',     level: 75, tags: ['MySQL', 'MongoDB', 'LaTeX', 'Excel'] },
     ],
   },
 ];

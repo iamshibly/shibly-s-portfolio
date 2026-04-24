@@ -29,9 +29,8 @@ const AboutSection = () => {
                   lineHeight:   1.8,
                   marginBottom: '1rem',
                 }}
-              >
-                {para}
-              </p>
+                dangerouslySetInnerHTML={{ __html: para }}
+              />
             ))}
 
             <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
@@ -76,6 +75,9 @@ const AboutSection = () => {
                 display:      'flex',
                 alignItems:   'center',
                 justifyContent:'center',
+                width:        '60%',
+                marginLeft:   'auto',
+                marginRight:  'auto',
               }}
             >
               {!imgError ? (
@@ -165,6 +167,12 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
+      <style>{`
+        .about-grid p strong {
+          color: var(--white);
+          font-weight: 600;
+        }
+      `}</style>
     </section>
   );
 };

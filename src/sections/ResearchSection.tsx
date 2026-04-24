@@ -94,7 +94,7 @@ const ResearchCard = ({ pos, visible, delay }: { pos: ResearchPosition; visible:
             }}
           >
             <span style={{ color: accentColor, flexShrink: 0, marginTop: '4px', fontSize: '0.65rem' }}>▸</span>
-            {topic}
+            <span dangerouslySetInnerHTML={{ __html: topic }} />
           </li>
         ))}
       </ul>
