@@ -490,7 +490,7 @@ export const news: NewsItem[] = [
   },
   {
     id: 'aspire-2025',
-    date: 'June 2025',
+    date: 'August 2025',
     title: 'Aspire Institute — Aspire Leaders Program 2025',
     summary:
       'Recognised by the Aspire Institute (a Harvard-affiliated non-profit) through the Aspire Leaders Program 2025 — a global leadership development programme for first-generation, high-potential university students. The programme emphasises self-leadership, career navigation, and social impact.',
