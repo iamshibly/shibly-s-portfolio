@@ -30,9 +30,9 @@ export const personalInfo = {
 /* ─── Hero Stats ─────────────────────────────────────────────── */
 export const heroStats: { target: number; label: string }[] = [
   { target: 5,  label: 'Accepted Papers' },
-  { target: 8,  label: 'Under Review' },
+  { target: 8,  label: 'Papers Under Review' },
   { target: 3,  label: 'Projects' },
-  { target: 1,  label: 'Rank in CSE' },
+  { target: 1,  label: 'Batch Rank' },
 ];
 
 /* ─── About ──────────────────────────────────────────────────── */
@@ -417,9 +417,9 @@ export const skillGroups: SkillGroup[] = [
     groupTitle: 'Core & ML',
     skills: [
       { name: 'Federated Learning',           level: 90, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision'] },
-      { name: 'Machine Learning',             level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'RFE'] },
-      { name: 'Deep Learning & Transformers', level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
-      { name: 'Explainable AI',               level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
+      { name: 'Machine Learning',             level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'ML Algorithms'] },
+      { name: 'Deep Learning & Transformers', level: 92, tags: ['PyTorch', 'TensorFlow', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Explainable AI',               level: 90, tags: ['SHAP', 'LIME', 'Grad-CAM', 'PDP', 'ICE', 'ALE'] },
       { name: 'Agentic AI',                   level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Agents', 'Tools'] },
       { name: 'Programming',                  level: 88, tags: ['Python', 'C', 'Java', 'Dart'] },
     ],
@@ -430,7 +430,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'Development Tools',     level: 90, tags: ['Git', 'GitHub', 'VS Code', 'LaTeX', 'Overleaf'] },
       { name: 'LLM Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Chains', 'Output Parsers', 'Prompt Templates'] },
       { name: 'Data & ML Libraries',   level: 88, tags: ['NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Colab'] },
-      { name: 'Visualization & Apps',  level: 82, tags: ['Streamlit', 'Matplotlib', 'Seaborn', 'MATLAB'] },
+      { name: 'Visualization & Apps',  level: 82, tags: ['Streamlit', 'Matplotlib', 'Seaborn'] },
       { name: 'Databases',             level: 78, tags: ['MySQL', 'MongoDB'] },
     ],
   },
