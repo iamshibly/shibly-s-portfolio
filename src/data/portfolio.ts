@@ -414,29 +414,24 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    groupTitle: 'AI / ML Research',
+    groupTitle: 'Core & ML',
     skills: [
-      { name: 'Deep Learning & Transformers',      level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
-      { name: 'Federated & Privacy-Preserving ML', level: 88, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision', 'Interpretable'] },
-      { name: 'Explainable AI',                    level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
-      { name: 'Feature Engineering & Selection',   level: 90, tags: ['Genetic FS', 'RFE', 'QUBO', 'Stability'] },
+      { name: 'Federated Learning',           level: 90, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision'] },
+      { name: 'Machine Learning',             level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'RFE'] },
+      { name: 'Deep Learning & Transformers', level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Explainable AI',               level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
+      { name: 'Agentic AI',                   level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Agents', 'Tools'] },
+      { name: 'Programming',                  level: 88, tags: ['Python', 'C', 'Java', 'Dart'] },
     ],
   },
   {
-    groupTitle: 'LLM / Agents',
+    groupTitle: 'Tools & Platforms',
     skills: [
-      { name: 'Agent Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Agents', 'Tools'] },
-      { name: 'Retrieval-Augmented Generation', level: 80, tags: ['RAG', 'Vector Stores', 'Embeddings'] },
-      { name: 'Chains & Parsers',        level: 80, tags: ['Chains', 'Output Parsers', 'Prompt Templates'] },
-    ],
-  },
-  {
-    groupTitle: 'Data & Engineering',
-    skills: [
-      { name: 'Data Analysis & Statistics',   level: 88, tags: ['NumPy', 'Pandas', 'Experimental Design'] },
-      { name: 'Programming',                  level: 85, tags: ['Python', 'C', 'Java', 'Dart', 'Flutter'] },
-      { name: 'Tools & Workflows',            level: 85, tags: ['scikit-learn', 'Matplotlib', 'Jupyter', 'Colab', 'Git', 'Overleaf', 'FastAPI', 'Next.js', 'TypeScript'] },
-      { name: 'Databases & Productivity',     level: 75, tags: ['MySQL', 'MongoDB', 'LaTeX', 'Excel'] },
+      { name: 'Development Tools',     level: 90, tags: ['Git', 'GitHub', 'VS Code', 'LaTeX', 'Overleaf'] },
+      { name: 'LLM Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Chains', 'Output Parsers', 'Prompt Templates'] },
+      { name: 'Data & ML Libraries',   level: 88, tags: ['NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Colab'] },
+      { name: 'Visualization & Apps',  level: 82, tags: ['Streamlit', 'Matplotlib', 'Seaborn', 'MATLAB'] },
+      { name: 'Databases',             level: 78, tags: ['MySQL', 'MongoDB'] },
     ],
   },
 ];
