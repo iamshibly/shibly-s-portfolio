@@ -1,36 +1,63 @@
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
-import { publications, type PubType } from '../data/portfolio';
+import { ExternalLink, Star } from 'lucide-react';
+import { publications, type PubType, type PubStatus, type CoreRank } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-const FILTERS: Array<'All' | PubType> = ['All', 'Journal', 'International Conference', 'Domestic Conference', 'Under Review'];
+type FilterKey = 'All' | PubType | 'Under Review';
+const FILTERS: FilterKey[] = [
+  'All',
+  'Journal',
+  'International Conference',
+  'Domestic Conference',
+  'Under Review',
+];
 
-const statusStyle = (status: string): React.CSSProperties => {
-  if (status === 'Published') return {
+const statusStyle = (status: PubStatus): React.CSSProperties => {
+  if (status === 'Accepted' || status === 'Published') return {
     background: 'rgba(var(--cyan-rgb), 0.1)',
     color:      'var(--cyan)',
-    border:     '1px solid rgba(var(--cyan-rgb), 0.2)',
-  };
-  if (status === 'Under Review') return {
-    background: 'rgba(255,209,102,0.1)',
-    color:      'var(--gold)',
-    border:     '1px solid rgba(255,209,102,0.2)',
+    border:     '1px solid rgba(var(--cyan-rgb), 0.25)',
   };
   return {
-    background: 'rgba(255,107,157,0.08)',
-    color:      'var(--pink)',
-    border:     '1px solid rgba(255,107,157,0.2)',
+    background: 'rgba(var(--gold-rgb), 0.1)',
+    color:      'var(--gold)',
+    border:     '1px solid rgba(var(--gold-rgb), 0.25)',
   };
 };
 
-const typeStyle = (type: PubType): React.CSSProperties => ({
-  background: 'rgba(255,107,157,0.08)',
+const typeStyle = (_type: PubType): React.CSSProperties => ({
+  background: 'rgba(var(--pink-rgb), 0.08)',
   color:      'var(--pink)',
-  border:     '1px solid rgba(255,107,157,0.2)',
+  border:     '1px solid rgba(var(--pink-rgb), 0.22)',
 });
 
+/* CORE rank → bright, flagship-feeling styles */
+const coreStyle = (rank: CoreRank): React.CSSProperties => {
+  if (rank === 'A*' || rank === 'A') return {
+    background: 'linear-gradient(90deg, rgba(var(--gold-rgb), 0.22), rgba(var(--pink-rgb), 0.18))',
+    color:      'var(--gold)',
+    border:     '1px solid rgba(var(--gold-rgb), 0.55)',
+    boxShadow:  '0 0 12px rgba(var(--gold-rgb), 0.25)',
+    fontWeight: 700,
+  };
+  if (rank === 'B') return {
+    background: 'rgba(var(--gold-rgb), 0.14)',
+    color:      'var(--gold)',
+    border:     '1px solid rgba(var(--gold-rgb), 0.45)',
+    fontWeight: 700,
+  };
+  return {
+    background: 'rgba(var(--cyan-rgb), 0.14)',
+    color:      'var(--cyan)',
+    border:     '1px solid rgba(var(--cyan-rgb), 0.4)',
+    fontWeight: 700,
+  };
+};
+
 const badgeBase: React.CSSProperties = {
-  display:       'inline-block',
+  display:       'inline-flex',
+  alignItems:    'center',
+  gap:           '0.3rem',
   fontFamily:    'var(--font-mono)',
   fontSize:      '0.68rem',
   letterSpacing: '0.06em',
@@ -41,16 +68,37 @@ const badgeBase: React.CSSProperties = {
   flexShrink:    0,
 };
 
+const noteStyle: React.CSSProperties = {
+  background: 'rgba(var(--cyan-rgb), 0.06)',
+  color:      'var(--muted)',
+  border:     '1px dashed rgba(var(--cyan-rgb), 0.28)',
+};
+
 const PublicationsSection = () => {
-  const [activeFilter, setActiveFilter] = useState<'All' | PubType>('All');
+  const [activeFilter, setActiveFilter] = useState<FilterKey>('All');
   const { ref, isVisible } = useScrollReveal(0.08);
 
+  /* Filter: "Under Review" matches by status; all others by type. "All" = everything. */
   const filtered = activeFilter === 'All'
     ? publications
-    : publications.filter(p => p.type === activeFilter);
+    : activeFilter === 'Under Review'
+      ? publications.filter(p => p.status === 'Under Review')
+      : publications.filter(p => p.type === activeFilter);
 
-  const count = (f: 'All' | PubType) =>
-    f === 'All' ? publications.length : publications.filter(p => p.type === f).length;
+  /* Sort: accepted/published first, then under-review. Within each, year desc. */
+  const sorted = [...filtered].sort((a, b) => {
+    const rank = (s: PubStatus) => (s === 'Under Review' ? 1 : 0);
+    const ra = rank(a.status), rb = rank(b.status);
+    if (ra !== rb) return ra - rb;
+    return b.year - a.year;
+  });
+
+  const count = (f: FilterKey) =>
+    f === 'All'
+      ? publications.length
+      : f === 'Under Review'
+        ? publications.filter(p => p.status === 'Under Review').length
+        : publications.filter(p => p.type === f).length;
 
   return (
     <section id="publications" className="section">
@@ -96,26 +144,21 @@ const PublicationsSection = () => {
           ref={ref}
           style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
         >
-          {filtered.map((pub, idx) => (
+          {sorted.map((pub, idx) => (
             <article
-              key={pub.num}
+              key={`${pub.title}-${pub.venue}`}
               className={`pub-card reveal ${isVisible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${idx * 0.07}s` }}
+              style={{ transitionDelay: `${idx * 0.05}s` }}
             >
-              {/* Index column — fixed, never shrinks */}
+              {/* Index column — restarts per filter */}
               <div className="pub-num" aria-hidden="true">
-                {String(pub.num).padStart(2, '0')}
+                {String(idx + 1).padStart(2, '0')}
               </div>
 
-              {/* Content column — min-width:0 is critical for text wrapping */}
+              {/* Content column */}
               <div className="pub-body">
-                {/* Title — full width, wraps freely */}
                 <h3 className="pub-title">{pub.title}</h3>
-
-                {/* Authors */}
                 <p className="pub-authors">{pub.authors}</p>
-
-                {/* Venue + year */}
                 <p className="pub-venue">{pub.venue}, {pub.year}</p>
 
                 {/* Badges + link row */}
@@ -126,6 +169,17 @@ const PublicationsSection = () => {
                   <span style={{ ...badgeBase, ...typeStyle(pub.type) }}>
                     {pub.type}
                   </span>
+                  {pub.coreRank && (
+                    <span style={{ ...badgeBase, ...coreStyle(pub.coreRank) }}>
+                      <Star size={10} strokeWidth={2.5} />
+                      CORE {pub.coreRank}
+                    </span>
+                  )}
+                  {pub.note && (
+                    <span style={{ ...badgeBase, ...noteStyle }}>
+                      {pub.note}
+                    </span>
+                  )}
                   {pub.link && (
                     <a
                       href={pub.link}

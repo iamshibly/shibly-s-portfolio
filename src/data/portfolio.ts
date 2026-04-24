@@ -29,8 +29,8 @@ export const personalInfo = {
 
 /* ─── Hero Stats ─────────────────────────────────────────────── */
 export const heroStats: { target: number; label: string }[] = [
-  { target: 3,  label: 'Accepted Papers' },
-  { target: 7,  label: 'Under Review' },
+  { target: 5,  label: 'Accepted Papers' },
+  { target: 8,  label: 'Under Review' },
   { target: 3,  label: 'Projects' },
   { target: 1,  label: 'Rank in CSE' },
 ];
@@ -134,136 +134,135 @@ export const researchPositions: ResearchPosition[] = [
 ];
 
 /* ─── Publications ───────────────────────────────────────────── */
-export type PubType = 'Journal' | 'International Conference' | 'Domestic Conference' | 'Under Review';
+export type PubType = 'Journal' | 'International Conference' | 'Domestic Conference';
+export type PubStatus = 'Accepted' | 'Published' | 'Under Review';
+export type CoreRank = 'A*' | 'A' | 'B' | 'C';
 
 export interface Publication {
-  num:     number;
-  title:   string;
-  authors: string;
-  venue:   string;
-  year:    number;
-  type:    PubType;
-  link?:   string;
-  status:  string;
+  title:    string;
+  authors:  string;
+  venue:    string;
+  year:     number;
+  type:     PubType;
+  status:   PubStatus;
+  link?:    string;
+  coreRank?: CoreRank;   // CORE ranking for flagship highlighting
+  note?:    string;      // extra annotation (e.g. 'Undergraduate Thesis')
 }
 
 export const publications: Publication[] = [
+  /* ── Accepted / Forthcoming ─────────────────────────────────── */
   {
-    num:     1,
-    title:   'Leveraging Multi-Algorithmic Feature Selection and Ensemble Machine Learning for Accurate Detection of Polycystic Ovarian Syndrome',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'IEEE ICCCNT 2025, Indore, India',
-    year:    2025,
-    type:    'International Conference',
-    status:  'Accepted (Forthcoming)',
+    title:    'Federated Explainable Intrusion Detection via Empirical-Bernstein Certified Bandit-KL Mixing with Tree Stacking',
+    authors:  'Md. Zubayer Ahmad Shibly, Dr. Maybin Muyeba, et al.',
+    venue:    'IEEE FUZZ 2026, Netherlands',
+    year:     2026,
+    type:     'International Conference',
+    status:   'Accepted',
+    coreRank: 'B',
   },
   {
-    num:     2,
-    title:   'A Novel Hybrid Feature Selection and Ensemble Learning Approach for Mortality Risk Classification in Hepatitis B Patients: An Explainable AI Study',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   "ICCIT 2025, Cox's Bazar, Bangladesh",
-    year:    2025,
-    type:    'International Conference',
-    status:  'Accepted (Forthcoming)',
+    title:    'FedBridge++: Privacy-Preserving Federated Self-Supervision with Interpretable Transformers for Tabular Loan Approval',
+    authors:  'Md. Zubayer Ahmad Shibly, Dr. Maybin Muyeba, et al.',
+    venue:    'SERA 2026, USA',
+    year:     2026,
+    type:     'International Conference',
+    status:   'Accepted',
+    coreRank: 'C',
   },
   {
-    num:     3,
-    title:   'Explainable AI-Driven Ensemble Learning Framework for PCOS Diagnosis Using AIM-PDCF and Quantum-GraphRFE Feature Selection',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   "ICCIT 2025, Cox's Bazar, Bangladesh",
-    year:    2025,
-    type:    'International Conference',
-    status:  'Accepted (Forthcoming)',
+    title:    'Leveraging Multi-Algorithmic Feature Selection and Ensemble Machine Learning for Accurate Detection of Polycystic Ovarian Syndrome',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'IEEE ICCCNT 2025, Indore, India',
+    year:     2025,
+    type:     'International Conference',
+    status:   'Accepted',
   },
   {
-    num:     4,
-    title:   'Federated Explainable Intrusion Detection via Empirical-Bernstein Certified Bandit-KL Mixing with Tree Stacking',
-    authors: 'Md. Zubayer Ahmad Shibly, Dr. Maybin Muyeba, et al.',
-    venue:   'IEEE FUZZ 2026, Netherlands — B-core',
-    year:    2026,
-    type:    'International Conference',
-    status:  'Accepted',
+    title:    'A Novel Hybrid Feature Selection and Ensemble Learning Approach for Mortality Risk Classification in Hepatitis B Patients: An Explainable AI Study',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    "ICCIT 2025, Cox's Bazar, Bangladesh",
+    year:     2025,
+    type:     'Domestic Conference',
+    status:   'Accepted',
   },
   {
-    num:     5,
-    title:   'FedBridge++: Privacy-Preserving Federated Self-Supervision with Interpretable Transformers for Tabular Loan Approval',
-    authors: 'Md. Zubayer Ahmad Shibly, Dr. Maybin Muyeba, et al.',
-    venue:   'SERA 2026, USA — C-core',
-    year:    2026,
-    type:    'International Conference',
-    status:  'Accepted',
+    title:    'Explainable AI-Driven Ensemble Learning Framework for PCOS Diagnosis Using AIM-PDCF and Quantum-GraphRFE Feature Selection',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    "ICCIT 2025, Cox's Bazar, Bangladesh",
+    year:     2025,
+    type:     'Domestic Conference',
+    status:   'Accepted',
+  },
+
+  /* ── Under Review — International Conferences ───────────────── */
+  {
+    title:    'Adaptive Biomarker Categorization with DiCAT and TCCA Feature Selection for Robust, Explainable Early Ovarian Cancer Detection',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'IRAI 2026, Melbourne, Australia',
+    year:     2026,
+    type:     'International Conference',
+    status:   'Under Review',
   },
   {
-    num:     6,
-    title:   'Adaptive Biomarker Categorization with DiCAT and TCCA Feature Selection for Robust, Explainable Early Ovarian Cancer Detection',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'IRAI 2026, Melbourne, Australia',
-    year:    2026,
-    type:    'Under Review',
-    status:  'Under Review',
+    title:    'An Explainable Stacking Ensemble Framework with Disagreement-Aware Feature Selection for Loan Approval Prediction',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'TENSYMP 2026, Penang, Malaysia',
+    year:     2026,
+    type:     'International Conference',
+    status:   'Under Review',
   },
   {
-    num:     7,
-    title:   'An Explainable Stacking Ensemble Framework with Disagreement-Aware Feature Selection for Loan Approval Prediction',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'TENSYMP 2026, Penang, Malaysia',
-    year:    2026,
-    type:    'Under Review',
-    status:  'Under Review',
+    title:    'An Interpretable Framework for Early Lung Cancer Prediction Using Graph Fusion and Role Stability for Robust Feature Selection with TabFGT',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'IEEE AVSS 2026, Lecce, Italy',
+    year:     2026,
+    type:     'International Conference',
+    status:   'Under Review',
+    coreRank: 'B',
+  },
+
+  /* ── Under Review — Journals ────────────────────────────────── */
+  {
+    title:    'Q-SEAL: An Explainable Transformer-Based Meta-Ensemble Model for Ovarian Cancer Prediction and Deployment Evaluation',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'Journal of Pathology Informatics',
+    year:     2026,
+    type:     'Journal',
+    status:   'Under Review',
   },
   {
-    num:     8,
-    title:   'An Interpretable Framework for Early Lung Cancer Prediction Using Graph Fusion and Role Stability for Robust Feature Selection with TabFGT',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'AVSS 2026, Lecce, Italy',
-    year:    2026,
-    type:    'Under Review',
-    status:  'Under Review',
+    title:    'Image Dataset for Classification and Recognition with Nutritional Values of Small Indigenous Freshwater River Fish from Bangladesh',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'Data in Brief, Elsevier',
+    year:     2026,
+    type:     'Journal',
+    status:   'Under Review',
   },
   {
-    num:     9,
-    title:   'Q-SEAL: An Explainable Transformer-Based Meta-Ensemble Model for Ovarian Cancer Prediction and Deployment Evaluation',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'Journal of Pathology Informatics',
-    year:    2026,
-    type:    'Journal',
-    status:  'Under Review',
+    title:    'Explainable Ovarian Cancer Diagnosis: Fusion-Based RFE-SHAP and Quantum-Inspired ANN-QUBO Feature Selection with Two-Tier Evaluation',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'Digital Health (SAGE)',
+    year:     2026,
+    type:     'Journal',
+    status:   'Under Review',
   },
   {
-    num:     10,
-    title:   'Image Dataset for Classification and Recognition with Nutritional Values of Small Indigenous Freshwater River Fish from Bangladesh',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'Data in Brief, Elsevier',
-    year:    2026,
-    type:    'Journal',
-    status:  'Under Review',
+    title:    'AIDPCP: An Adaptive Intelligent Preprocessing and Clustering Pipeline for Obesity Prediction with Explainable AI',
+    authors:  'Md. Zubayer Ahmad Shibly, et al.',
+    venue:    'IET Software (Wiley)',
+    year:     2026,
+    type:     'Journal',
+    status:   'Under Review',
   },
   {
-    num:     11,
-    title:   'Explainable Ovarian Cancer Diagnosis: Fusion-Based RFE-SHAP and Quantum-Inspired ANN-QUBO Feature Selection with Two-Tier Evaluation',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'Digital Health (SAGE)',
-    year:    2026,
-    type:    'Journal',
-    status:  'Under Review',
-  },
-  {
-    num:     12,
-    title:   'AIDPCP: An Adaptive Intelligent Preprocessing and Clustering Pipeline for Obesity Prediction with Explainable AI',
-    authors: 'Md. Zubayer Ahmad Shibly, et al.',
-    venue:   'IET Software (Wiley)',
-    year:    2026,
-    type:    'Journal',
-    status:  'Under Review',
-  },
-  {
-    num:     13,
-    title:   'FedGCF-Net: Federated Genetically-Optimized Contrast-Enhanced Fusion Network for Brain Tumor Classification',
-    authors: 'Md. Zubayer Ahmad Shibly',
-    venue:   'The Journal of Engineering',
-    year:    2026,
-    type:    'Journal',
-    status:  'Under Review (Undergraduate Thesis)',
+    title:    'FedGCF-Net: Federated Genetically-Optimized Contrast-Enhanced Fusion Network for Brain Tumor Classification',
+    authors:  'Md. Zubayer Ahmad Shibly',
+    venue:    'The Journal of Engineering',
+    year:     2026,
+    type:     'Journal',
+    status:   'Under Review',
+    note:     'Undergraduate Thesis',
   },
 ];
 
@@ -281,20 +280,20 @@ export const projects: Project[] = [
     title: 'MultiDx Clinical AI — Multi-Disease Prediction System',
     description: 'Full-stack clinical AI platform with an end-to-end modeling-to-deployment workflow. Integrates four disease-specific models (Ovarian Cancer, PCOS, Hepatitis B, Brain Tumor MRI) and ships explainability modules using SHAP and LIME with PDP, ICE, and ALE analytical views.',
     tags: ['Python', 'FastAPI', 'PyTorch', 'scikit-learn', 'Next.js', 'TypeScript', 'SHAP', 'LIME'],
-    link: 'https://github.com/iamshibly',
-    demo: '#',
+    link: 'https://github.com/iamshibly/MultiDx',
+    demo: 'https://model.sayeedjoy.com/',
   },
   {
     title: 'AniMaze — AI-Powered Anime & Manga Platform',
     description: 'Full-stack platform with a responsive interface, structured navigation, and user-focused design. Features AI-powered quiz generation, XP-based progression, leaderboards, typo-tolerant smart search, role-based dashboards, external API integrations, and subscription badge logic.',
     tags: ['TypeScript', 'MySQL', 'Supabase', 'Next.js'],
-    link: 'https://github.com/iamshibly',
+    link: 'https://github.com/iamshibly/AniMaze',
   },
   {
     title: 'Arduino Home Security & Fire/Smoke Detection',
     description: 'Keypad + LCD door security system with servo-controlled locking and timed auto re-lock. Bluetooth-based mobile control for gate access, pump, and alarm. Fire/smoke detection automatically triggers alarms and activates the water pump via relay.',
     tags: ['Arduino Uno', 'HC-05 Bluetooth', 'MQ-2 Sensor', 'Flame Sensor', 'Servo', 'Relay', 'Keypad'],
-    link: 'https://github.com/iamshibly',
+    link: 'https://github.com/iamshibly/Arduino-Home-Security-and-Fire-Smoke-Detection-System-with-Automatic-Water-Pump-Activation',
   },
 ];
 

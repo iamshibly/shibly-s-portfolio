@@ -132,7 +132,6 @@ const HeroSection = () => {
                 href={personalInfo.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                download={personalInfo.cvFileName}
                 className="btn-primary"
               >
                 <ExternalLink size={14} /> View CV

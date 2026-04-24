@@ -14,10 +14,10 @@
    ════════════════════════════════════════════════════════════════ */
 :root,
 :root[data-theme="academic-navy"] {
-  /* Backgrounds — deep scholarly navy */
-  --bg:   #0b1220;
-  --bg2:  #111b2e;
-  --bg3:  #16243d;
+  /* Backgrounds — deep-space navy (near black with a cool blue tint) */
+  --bg:   #04060d;
+  --bg2:  #080c18;
+  --bg3:  #0d1428;
 
   /* Accent palette — navy · teal · gold */
   --cyan: #38bdf8;   /* sky/teal — primary */
@@ -45,7 +45,7 @@
   --radius: 0.75rem;
 
   /* ── shadcn/ui HSL tokens (kept for Radix primitives; dark-mapped) ── */
-  --background:             222 60% 4%;
+  --background:             226 55% 3%;
   --foreground:             220 25% 93%;
   --card:                   222 40% 8%;
   --card-foreground:        220 25% 93%;
