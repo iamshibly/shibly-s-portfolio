@@ -53,7 +53,13 @@ const ContactSection = () => {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify(form),
+        body:    JSON.stringify({
+          name:     form.name,
+          email:    form.email,
+          message:  form.message,
+          _replyto: form.email,
+          _subject: `Portfolio contact from ${form.name || 'a visitor'}`,
+        }),
       });
       if (res.ok) {
         setStatus('success');
