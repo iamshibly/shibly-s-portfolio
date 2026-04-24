@@ -345,37 +345,58 @@ export const collaborators: Collaborator[] = [
 ];
 
 /* ─── Experience ─────────────────────────────────────────────── */
+export interface ExperienceLink {
+  label: string;
+  url:   string;
+}
+
 export interface Experience {
   date:        string;
   role:        string;
   org:         string;
+  orgUrl?:     string;
   description: string;
+  links?:      ExperienceLink[];
 }
 
 export const experience: Experience[] = [
   {
     date:        'Mar 2026 – Present',
     role:        'AI Agent Developer Intern',
-    org:         'NeuroCrack Technologies',
-    description: 'Building intelligent AI agent systems and production workflows. Offer letter on record.',
+    org:         'Neurocrack Technologies',
+    orgUrl:      'https://www.neurocrack.com/',
+    description:
+      'Building a subject-agnostic AI agent that resolves academic doubts for middle- and high-school students across any topic — mathematics, science, English, Bangla, social studies — in real time. Work spans production-grade LLM orchestration, retrieval-augmented reasoning over curriculum content, tool-use for step-by-step solutions, and evaluation harnesses that keep answers pedagogically faithful before they reach a student.',
+    links: [
+      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1iUtrbSoNQnVuSJTFEPpOEKysm3Q-wkjE/view?usp=sharing' },
+    ],
   },
   {
     date:        'Sep 2025 – Present',
     role:        'Director of Project Management (Volunteer)',
     org:         'Roots of Rise — NGO',
-    description: 'Leading cross-functional volunteer teams on education and social-impact projects; coordinating program delivery, timelines, and reporting.',
+    orgUrl:      'https://www.linkedin.com/company/roots-of-rise/',
+    description:
+      'Leading end-to-end delivery of projects at Roots of Rise — a youth-driven NGO built around the 3E motto: Educate, Empower, Elevate — for a sustainable and just future. Coordinating across the Education, Outreach, and Community-Impact departments; scoping initiatives, sequencing deliverables, and owning timelines so programmes aligned with all three Es ship on schedule and with measurable impact.',
   },
   {
     date:        'Mar 2025 – May 2025',
     role:        'Campus Ambassador Intern',
     org:         'IMUN (International Model United Nations)',
-    description: 'Represented IMUN on campus, organized conference outreach, and earned certificate + offer letter + conference participation.',
+    orgUrl:      'https://www.internationalmun.org/',
+    description:
+      'Represented IMUN on the Southeast University campus as a Campus Ambassador — running outreach for the organisation\u2019s diplomacy simulations, briefing prospective delegates on committee formats, and channelling interested students into IMUN\u2019s online conferences.',
+    links: [
+      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1xQSNMAZcsWHuVMru1aA6vGxK2Ebdk-2z/view?usp=sharing' },
+    ],
   },
   {
     date:        'Feb 2024 – Apr 2024',
-    role:        'Project Manager (Part-time)',
+    role:        'Project Manager (Tech)',
     org:         'Laga Tour',
-    description: 'Planned and delivered operational projects, coordinated vendors, and owned client communication and delivery timelines.',
+    orgUrl:      'https://www.linkedin.com/company/laga-tour/',
+    description:
+      'Coordinated a tech team across the data-collection and data-entry pipelines — scoping daily collection targets, reviewing entry quality, tracking deliverables against schedule, and handing off clean, validated datasets to downstream operations. Acted as the single point of accountability between the tech team and leadership for progress, blockers, and data-hygiene standards.',
   },
 ];
 
@@ -451,13 +472,20 @@ export const awards: Award[] = [
 ];
 
 /* ─── News ───────────────────────────────────────────────────── */
+export interface NewsLink {
+  label: string;
+  url:   string;
+}
+
 export interface NewsItem {
   id: string;
   date: string;
   title: string;
+  titleUrl?: string;
   summary: string;
   image: string;
   featured: boolean;
+  links?: NewsLink[];
 }
 
 export const news: NewsItem[] = [
@@ -483,10 +511,14 @@ export const news: NewsItem[] = [
     id: 'imun-2025',
     date: '5 – 6 April 2025',
     title: 'Delegate at IMUN Online Conference 260.0',
+    titleUrl: 'https://www.internationalmun.org/',
     summary:
-      'Participated as a Delegate in the International Model United Nations (IMUN) Online Conference 260.0, debating a policy brief over two days of committee sessions. IMUN 260.0 was convened with past sponsorship from UNHCR, the Australian Embassy, UNFPA, WHO, WFP, and UNDP — giving the forum a strong multi-agency diplomatic tone.',
+      'Served as a Delegate at the International Model United Nations (IMUN) Online Conference 260.0 — a two-day simulation of United Nations committee sessions. Researched a country position, drafted and defended a policy brief, negotiated language across bloc talks, and worked through committee procedure alongside delegates from multiple universities and countries — practical experience in structured international negotiation and multi-stakeholder decision making.',
     image: '/news/imun-2025-cert.jpg',
     featured: false,
+    links: [
+      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1xQSNMAZcsWHuVMru1aA6vGxK2Ebdk-2z/view?usp=sharing' },
+    ],
   },
   {
     id: 'aspire-2025',
@@ -546,10 +578,14 @@ export const news: NewsItem[] = [
     id: 'neurocrack-2026',
     date: 'March 2026',
     title: 'Joined Neurocrack Technologies as AI Agent Developer Intern',
+    titleUrl: 'https://www.neurocrack.com/',
     summary:
-      'Started at Neurocrack — a Bangladesh-based EdTech building mobile-first exam preparation ("এখন এক্সাম প্রিপারেশন হবে হাতের মুঠোয়") for school students. Focus: production-grade agentic AI systems (LLM orchestration, retrieval, tool-use) and turning research-grade ML into reliable product features that thousands of students use daily.',
+      'Joined Neurocrack Technologies as an AI Agent Developer Intern, building a subject-agnostic AI agent that resolves academic doubts for middle- and high-school students across any subject. Scope spans LLM orchestration, retrieval over curriculum content, tool-use for step-by-step working, and evaluation harnesses to keep answers pedagogically faithful.',
     image: '/news/neurocrack-2026.jpg',
     featured: true,
+    links: [
+      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1iUtrbSoNQnVuSJTFEPpOEKysm3Q-wkjE/view?usp=sharing' },
+    ],
   },
   {
     id: 'fuzz-accepted-2026',
