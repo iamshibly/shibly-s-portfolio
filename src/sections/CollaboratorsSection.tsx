@@ -55,14 +55,33 @@ const CollaboratorsSection = () => {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
             display: block;
-            filter: grayscale(80%) brightness(0.8);
+            filter: grayscale(70%) brightness(0.85) contrast(1.05) saturate(1.1);
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
           }
 
           .collab-card:hover img {
             transform: scale(1.05);
-            filter: grayscale(0%) brightness(1);
+            filter: grayscale(0%) brightness(1) contrast(1.05) saturate(1.1);
+          }
+
+          .collab-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            box-shadow: inset 0 0 0 1px rgba(var(--cyan-rgb), 0);
+            transition: box-shadow 0.4s ease;
+            pointer-events: none;
+          }
+
+          .collab-card:hover::after {
+            box-shadow: inset 0 0 0 1px rgba(var(--cyan-rgb), 0.35),
+                        0 0 24px rgba(var(--cyan-rgb), 0.12);
           }
 
           .collab-overlay {
@@ -90,17 +109,20 @@ const CollaboratorsSection = () => {
           }
 
           .collab-overlay p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            line-height: 1.35;
             color: var(--cyan);
             margin-bottom: 0.4rem;
           }
 
           .collab-overlay span {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
+            font-size: 0.62rem;
+            line-height: 1.4;
             color: var(--muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
+            display: block;
           }
         `}</style>
       </div>
