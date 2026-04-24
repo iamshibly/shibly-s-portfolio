@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState, useMemo } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { news } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -96,36 +96,7 @@ const NewsSection = () => {
                     </div>
                     <div className="news-content">
                       <p className="news-date">{item.date}</p>
-                      <h3 className="news-title">
-                        {item.titleUrl ? (
-                          <a
-                            href={item.titleUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="news-title-link"
-                          >
-                            {item.title}
-                          </a>
-                        ) : (
-                          item.title
-                        )}
-                      </h3>
-                      {item.links && item.links.length > 0 && (
-                        <div className="news-links">
-                          {item.links.map((link) => (
-                            <a
-                              key={link.url}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="news-chip"
-                            >
-                              <ExternalLink size={10} style={{ marginRight: '0.25rem' }} />
-                              {link.label}
-                            </a>
-                          ))}
-                        </div>
-                      )}
+                      <h3 className="news-title">{item.title}</h3>
                       <p className="news-summary">{item.summary}</p>
                     </div>
                   </div>
@@ -221,42 +192,6 @@ const NewsSection = () => {
             color:        var(--white);
             margin-bottom:0.75rem;
             line-height:  1.35;
-          }
-          .news-title-link {
-            color:           inherit;
-            text-decoration: none;
-            border-bottom:   1px dashed rgba(var(--cyan-rgb), 0.45);
-            transition:      color 0.2s ease, border-color 0.2s ease;
-          }
-          .news-title-link:hover {
-            color:         var(--cyan);
-            border-color:  var(--cyan);
-          }
-          .news-links {
-            display:        flex;
-            flex-wrap:      wrap;
-            gap:            0.4rem;
-            margin-bottom:  0.75rem;
-          }
-          .news-chip {
-            display:         inline-flex;
-            align-items:     center;
-            font-family:     var(--font-mono);
-            font-size:       0.62rem;
-            font-weight:     700;
-            text-transform:  uppercase;
-            letter-spacing:  0.06em;
-            padding:         0.2rem 0.55rem;
-            border-radius:   0.25rem;
-            background:      rgba(var(--cyan-rgb), 0.12);
-            border:          1px solid rgba(var(--cyan-rgb), 0.35);
-            color:           var(--cyan);
-            text-decoration: none;
-            transition:      background 0.2s ease, border-color 0.2s ease;
-          }
-          .news-chip:hover {
-            background:   rgba(var(--cyan-rgb), 0.22);
-            border-color: rgba(var(--cyan-rgb), 0.55);
           }
           .news-summary {
             font-size:   0.87rem;
