@@ -29,8 +29,8 @@ export const personalInfo = {
 
 /* ─── Hero Stats ─────────────────────────────────────────────── */
 export const heroStats: { target: number; label: string }[] = [
-  { target: 3,  label: 'Accepted Papers' },
-  { target: 7,  label: 'Under Review' },
+  { target: 5,  label: 'Accepted Papers' },
+  { target: 8,  label: 'Under Review' },
   { target: 3,  label: 'Projects' },
   { target: 1,  label: 'Rank in CSE' },
 ];
