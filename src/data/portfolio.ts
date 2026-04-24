@@ -447,7 +447,7 @@ export const awards: Award[] = [
   { icon: 'graduation', name: 'Full Tuition Waiver Scholarship (4 years)',       org: 'Southeast University',              year: 2022 },
   { icon: 'star',       name: 'Aspire Institute Awards — Leadership Recognition', org: 'Aspire Leaders Program 2025',       year: 2025 },
   { icon: 'trophy',     name: 'Debate Competition Winner (Team President)',      org: 'FICC — Farees International Career Counseling', year: 2020 },
-  { icon: 'sparkles',   name: 'Volunteerism for Social Change — Trained',        org: 'BYLCx',                              year: 2024 },
+  { icon: 'trophy',     name: 'Top 22 of 650 — Harvard HSIL Hackathon 2026 (Dhaka Hub)', org: 'Harvard T.H. Chan School of Public Health', year: 2026 },
 ];
 
 /* ─── News ───────────────────────────────────────────────────── */
