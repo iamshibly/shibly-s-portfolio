@@ -8,21 +8,23 @@ const NewsSection = () => {
   const { ref, isVisible } = useScrollReveal(0.08);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Parse a "Month YYYY" or "DD Month YYYY" string into a sortable number (YYYYMMDD)
+  // Parse a date string into a sortable number (YYYYMMDD).
+  // Tolerates: "Month YYYY", "DD Month YYYY",
+  // and ranges like "DD – DD Month YYYY" or "DD Month – DD Month YYYY".
+  // Strategy: locate the first known month name and the last 4-digit year in the string,
+  // and use the first numeric token as day (1 if absent).
   const parseDate = (dateStr: string) => {
     const months: Record<string, number> = {
       January:1, February:2, March:3, April:4, May:5, June:6,
       July:7, August:8, September:9, October:10, November:11, December:12,
     };
-    const parts = dateStr.trim().split(/\s+/);
-    let day = 1, month = '', year = '';
-    if (parts.length === 3) {
-      [ , month, year] = parts;
-      day = parseInt(parts[0]) || 1;
-    } else {
-      [month, year] = parts;
-    }
-    return parseInt(year) * 10000 + (months[month] ?? 0) * 100 + day;
+    const tokens = dateStr.replace(/[,]/g, '').trim().split(/\s+/);
+    const month = tokens.find((t) => months[t] !== undefined) ?? '';
+    const yearToken = [...tokens].reverse().find((t) => /^\d{4}$/.test(t)) ?? '';
+    const dayToken = tokens.find((t) => /^\d{1,2}$/.test(t)) ?? '';
+    const year = parseInt(yearToken) || 0;
+    const day = parseInt(dayToken) || 1;
+    return year * 10000 + (months[month] ?? 0) * 100 + day;
   };
 
   // Sort all news items chronologically (oldest → newest)
