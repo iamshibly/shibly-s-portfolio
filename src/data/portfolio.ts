@@ -30,7 +30,7 @@ export const personalInfo = {
 export const heroStats: { target: number; label: string }[] = [
   { target: 3,  label: 'Accepted Papers' },
   { target: 7,  label: 'Under Review' },
-  { target: 4,  label: 'Research Projects' },
+  { target: 3,  label: 'Projects' },
   { target: 1,  label: 'Rank in CSE' },
 ];
 
@@ -105,7 +105,7 @@ export interface ResearchPosition {
 
 export const researchPositions: ResearchPosition[] = [
   {
-    date:       '2024 – Present',
+    date:       '2026 – Present',
     status:     'Active',
     title:      'Collaborative Researcher',
     org:        'University of Salford, United Kingdom',
@@ -118,8 +118,8 @@ export const researchPositions: ResearchPosition[] = [
     ],
   },
   {
-    date:       '2024 – Present',
-    status:     'Active',
+    date:       '2025 – Early 2026',
+    status:     'Completed',
     title:      'Collaborative Researcher',
     org:        'Augusta University, USA',
     supervisor: 'Supervised by Rajon Bardhan',
@@ -128,19 +128,6 @@ export const researchPositions: ResearchPosition[] = [
     topics: [
       'UADGE-FS: Uncertainty-Aware, Dominance-Gated Evolutionary Feature Selection — submitted to ICDM 2026 (China, A*).',
       'TRUST-GFS: Tie-safe Reliability and Uplift Screening for Target-guided Genetic Feature Selection — submitted to NeurIPS 2026 (A*).',
-    ],
-  },
-  {
-    date:       '2024 – Present',
-    status:     'Ongoing',
-    title:      'Undergraduate Thesis Researcher',
-    org:        'Southeast University',
-    supervisor: 'Dept. of Computer Science and Engineering',
-    faculty:    'Thesis — under faculty supervision',
-    variant:    'cyan',
-    topics: [
-      'FedGCF-Net: a Federated Genetically-Optimized Contrast-Enhanced Fusion Network for Brain Tumor Classification.',
-      'Manuscript under review at The Journal of Engineering.',
     ],
   },
 ];
@@ -308,12 +295,6 @@ export const projects: Project[] = [
     tags: ['Arduino Uno', 'HC-05 Bluetooth', 'MQ-2 Sensor', 'Flame Sensor', 'Servo', 'Relay', 'Keypad'],
     link: 'https://github.com/iamshibly',
   },
-  {
-    title: 'FedGCF-Net — Federated Brain Tumor Classification',
-    description: 'Undergraduate thesis work. A Federated Genetically-Optimized Contrast-Enhanced Fusion Network for brain tumor classification on MRI data. Manuscript under review at The Journal of Engineering.',
-    tags: ['Python', 'PyTorch', 'Federated Learning', 'Genetic Algorithm', 'MRI', 'Medical Imaging'],
-    link: 'https://github.com/iamshibly',
-  },
 ];
 
 /* ─── Collaborators ──────────────────────────────────────────── */
@@ -351,7 +332,7 @@ export const collaborators: Collaborator[] = [
   },
   {
     name:        'Mirza Nadim Saad',
-    title:       'Research Assistant · Southeast University alumnus',
+    title:       'Research Assistant',
     institution: 'Islamic University of Technology (IUT)',
     image:       '/collaborators/mirza-nadim-saad.jpg',
   },
@@ -562,19 +543,24 @@ export interface Reference {
   title:       string;
   institution: string;
   email:       string;
+  image:       string;
+  note?:       string;
 }
 
 export const references: Reference[] = [
-  {
-    name:        'Shifat Ahmed',
-    title:       'Coordinator & Assistant Professor',
-    institution: 'Dept. of CSE, Southeast University',
-    email:       'shifat.ahmed@seu.edu.bd',
-  },
   {
     name:        'Khandaker Mohammad Mohi Uddin',
     title:       'Assistant Professor',
     institution: 'Dept. of CSE, Southeast University',
     email:       'mohiuddin.kh@seu.edu.bd',
+    image:       '/references/mohi-uddin.jpg',
+    note:        'Undergraduate thesis supervisor',
+  },
+  {
+    name:        'Shifat Ahmed',
+    title:       'Assistant Professor',
+    institution: 'Dept. of CSE, Southeast University',
+    email:       'shifat.ahmed@seu.edu.bd',
+    image:       '/references/shifat-ahmed.jpg',
   },
 ];

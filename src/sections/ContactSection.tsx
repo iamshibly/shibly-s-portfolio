@@ -117,9 +117,13 @@ const ContactSection = () => {
             <div className="ref-list">
               {references.map(r => (
                 <div key={r.name} className="ref-card">
-                  <div className="ref-name">{r.name}</div>
-                  <div className="ref-role">{r.title} · {r.institution}</div>
-                  <a href={`mailto:${r.email}`} className="ref-email">{r.email}</a>
+                  <img src={r.image} alt={r.name} className="ref-photo" loading="lazy" />
+                  <div className="ref-body">
+                    <div className="ref-name">{r.name}</div>
+                    <div className="ref-role">{r.title} · {r.institution}</div>
+                    {r.note && <div className="ref-note">{r.note}</div>}
+                    <a href={`mailto:${r.email}`} className="ref-email">{r.email}</a>
+                  </div>
                 </div>
               ))}
             </div>
