@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { personalInfo, aboutBio, researchInterests } from '../data/portfolio';
+import { personalInfo, aboutBio, researchInterests, hobbies } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const AboutSection = () => {
@@ -11,17 +11,10 @@ const AboutSection = () => {
   return (
     <section id="about" className="section">
       <div className="section-inner">
-        <p className="section-label">// Who I Am</p>
-        <h2 className="section-title">About <span>Me</span></h2>
+        <p className="section-label">// About</p>
+        <h2 className="section-title">Who I <span>Am</span></h2>
 
-        <div
-          style={{
-            display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap:                 '4rem',
-            alignItems:          'start',
-          }}
-        >
+        <div className="about-grid">
           {/* ── Left: Bio + Contact ──────────────────────────── */}
           <div
             ref={leftRef}
@@ -79,7 +72,7 @@ const AboutSection = () => {
                 border:       '1px solid var(--border-color)',
                 marginBottom: '1.75rem',
                 background:   'var(--bg3)',
-                aspectRatio:  '4/3',
+                aspectRatio:  '3/4',
                 display:      'flex',
                 alignItems:   'center',
                 justifyContent:'center',
@@ -147,6 +140,25 @@ const AboutSection = () => {
             </h4>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {researchInterests.map(tag => (
+                <span key={tag} className="tag">{tag}</span>
+              ))}
+            </div>
+
+            <h4
+              style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '0.72rem',
+                color:         'var(--muted)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                marginTop:     '2rem',
+                marginBottom:  '0.85rem',
+              }}
+            >
+              Beyond Research
+            </h4>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              {hobbies.map(tag => (
                 <span key={tag} className="tag">{tag}</span>
               ))}
             </div>

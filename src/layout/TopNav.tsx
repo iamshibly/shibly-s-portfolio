@@ -2,26 +2,31 @@ import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 
 /* ─── Nav links ──────────────────────────────────────────────── */
-const NAV_LINKS = [
+const LEFT_LINKS = [
+  { label: 'Home',           href: '#hero' },
   { label: 'About',          href: '#about' },
   { label: 'Education',      href: '#education' },
   { label: 'Research',       href: '#research' },
   { label: 'Publications',   href: '#publications' },
+  { label: 'Projects',       href: '#projects' },
+];
+
+const RIGHT_LINKS = [
+  { label: 'Collaborators',  href: '#collaborators' },
   { label: 'Experience',     href: '#experience' },
   { label: 'Skills',         href: '#skills' },
-  { label: 'Certifications', href: '#certifications' },
+  { label: 'Achievements',   href: '#certifications' },
+  { label: 'News',           href: '#news' },
   { label: 'Contact',        href: '#contact' },
 ];
 
-export const NAV_HEIGHT = 72; /* exported so sections can pad correctly */
+const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS];
 
-/* ─── Logo slot ──────────────────────────────────────────────── */
-/* Drop your real logo at public/portfolio-assets/logo/logo.svg  */
-/* and update LOGO_SRC below — or replace the <img> with an      */
-/* <svg> inline wordmark entirely.                                */
-const LOGO_SRC = '/portfolio-assets/logo/placeholder.svg';
+export const NAV_HEIGHT = 72;
 
-const LogoSlot = () => {
+const LOGO_SRC = '/portfolio-assets/logo/logo.png';
+
+const LogoSlot = ({ scrolled }: { scrolled: boolean }) => {
   const [imgFailed, setImgFailed] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
@@ -34,18 +39,23 @@ const LogoSlot = () => {
       href="#"
       onClick={handleClick}
       aria-label="Back to top"
-      style={{ display: 'flex', alignItems: 'center', flexShrink: 0, marginRight: 'auto' }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexShrink: 0,
+        margin: scrolled ? '0 2rem' : '0 auto 0 0', // Centered when scrolled, left when top
+        transition: 'margin 0.3s ease',
+      }}
     >
       {!imgFailed ? (
         <img
           src={LOGO_SRC}
-          alt="Site logo"
+          alt="Md. Zubayer Ahmad Shibly Logo"
           height={36}
           onError={() => setImgFailed(true)}
           style={{ height: '36px', width: 'auto', display: 'block' }}
         />
       ) : (
-        /* Fallback text-wordmark — replace this string when you have a real logo */
         <span
           style={{
             fontFamily:    'var(--font-mono)',
@@ -66,16 +76,14 @@ const LogoSlot = () => {
   );
 };
 
-/* ─── Top Nav ────────────────────────────────────────────────── */
 const TopNav = () => {
   const [activeSection, setActiveSection] = useState('');
   const [menuOpen,      setMenuOpen]      = useState(false);
   const [scrolled,      setScrolled]      = useState(false);
 
-  /* Active section detection */
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 30);
-    const ids = NAV_LINKS.map(l => l.href.slice(1));
+    const ids = ALL_LINKS.map(l => l.href.slice(1));
     let current = '';
     for (const id of ids) {
       const el = document.getElementById(id);
@@ -91,7 +99,6 @@ const TopNav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  /* Close menu on Escape */
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false); };
@@ -100,13 +107,32 @@ const TopNav = () => {
   }, [menuOpen]);
 
   const scrollTo = (href: string) => {
-    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(href.slice(1));
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT - 8;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
     setMenuOpen(false);
   };
 
+  const renderLinks = (links: {label: string, href: string}[]) => (
+    links.map(link => {
+      const active = activeSection === link.href.slice(1);
+      return (
+        <a
+          key={link.href}
+          href={link.href}
+          onClick={e => { e.preventDefault(); scrollTo(link.href); }}
+          className={`nav-link${active ? ' nav-link--active' : ''}`}
+        >
+          {link.label}
+        </a>
+      );
+    })
+  );
+
   return (
     <>
-      {/* ── Nav bar ────────────────────────────────────────── */}
       <nav
         role="navigation"
         aria-label="Main navigation"
@@ -119,31 +145,42 @@ const TopNav = () => {
           height:         `${NAV_HEIGHT}px`,
           display:        'flex',
           alignItems:     'center',
+          justifyContent: scrolled ? 'center' : 'flex-start',
           padding:        '0 2.5rem',
-          background:     scrolled ? 'rgba(6,9,15,0.92)' : 'rgba(6,9,15,0.70)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderBottom:   '1px solid var(--border-color)',
-          transition:     'background 0.35s ease',
+          background:     scrolled ? 'rgba(6,9,15,0.92)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+          borderBottom:   scrolled ? '1px solid var(--border-color)' : '1px solid transparent',
+          transition:     'all 0.35s ease',
         }}
       >
-        <LogoSlot />
+        <div className="nav-desktop" style={{ 
+          display: 'flex', 
+          width: '100%', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          opacity: scrolled ? 1 : 0,
+          visibility: scrolled ? 'visible' : 'hidden',
+          transition: 'opacity 0.3s ease, visibility 0.3s ease',
+        }}>
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'flex-end', flex: 1 }}>
+            {renderLinks(LEFT_LINKS)}
+          </div>
+          <LogoSlot scrolled={scrolled} />
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'flex-start', flex: 1 }}>
+            {renderLinks(RIGHT_LINKS)}
+          </div>
+        </div>
 
-        {/* Desktop links */}
-        <div className="nav-desktop" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          {NAV_LINKS.map(link => {
-            const active = activeSection === link.href.slice(1);
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={e => { e.preventDefault(); scrollTo(link.href); }}
-                className={`nav-link${active ? ' nav-link--active' : ''}`}
-              >
-                {link.label}
-              </a>
-            );
-          })}
+        {/* When at top, just show the logo on the left */}
+        <div className="nav-desktop-top" style={{
+          position: 'absolute',
+          left: '2.5rem',
+          display: scrolled ? 'none' : 'block',
+          opacity: scrolled ? 0 : 1,
+          transition: 'opacity 0.3s ease',
+        }}>
+          <LogoSlot scrolled={scrolled} />
         </div>
 
         {/* Mobile hamburger */}
@@ -153,11 +190,12 @@ const TopNav = () => {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           style={{
-            display:    'none',   /* shown via media query below */
+            display:    'none',
             background: 'none',
             border:     'none',
             color:      'var(--white)',
             padding:    '0.4rem',
+            marginLeft: 'auto',
           }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -194,9 +232,11 @@ const TopNav = () => {
           padding:        '0.5rem 2.5rem 1.25rem',
           display:        menuOpen ? 'flex' : 'none',
           flexDirection:  'column',
+          maxHeight:      'calc(100vh - 72px)',
+          overflowY:      'auto',
         }}
       >
-        {NAV_LINKS.map(link => {
+        {ALL_LINKS.map(link => {
           const active = activeSection === link.href.slice(1);
           return (
             <a
@@ -265,12 +305,16 @@ const TopNav = () => {
         }
 
         /* Responsive breakpoint */
-        @media (max-width: 900px) {
-          .nav-desktop    { display: none !important; }
+        @media (max-width: 1100px) {
+          .nav-desktop, .nav-desktop-top { display: none !important; }
           .nav-hamburger  { display: flex !important; }
+          /* Ensure logo stays visible on mobile */
+          nav { padding-left: 1rem !important; padding-right: 1rem !important; }
+          nav > a { display: flex !important; margin: 0 !important; }
         }
-        @media (min-width: 901px) {
+        @media (min-width: 1101px) {
           .nav-mobile-panel { display: none !important; }
+          .nav-hamburger { display: none !important; }
         }
       `}</style>
     </>

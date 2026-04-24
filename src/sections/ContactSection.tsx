@@ -1,232 +1,211 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, BookOpen, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, BookOpen, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { personalInfo, references } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+
+/*
+ * ── Contact Form powered by Formspree ──────────────────────────────────────
+ *
+ * HOW TO ACTIVATE REAL EMAIL DELIVERY (takes ~2 minutes, free):
+ *
+ *  1. Go to https://formspree.io and create a free account.
+ *  2. Click "New Form", name it "Portfolio Contact".
+ *  3. Copy your Form ID (looks like: xpwzrjkq).
+ *  4. Replace the placeholder below with your real Form ID:
+ *
+ *       const FORMSPREE_ID = 'xpwzrjkq';   ← your actual ID
+ *
+ *  5. Save & redeploy. Every submission will be emailed to your Formspree
+ *     account email (which you point to your real inbox in Settings → Email).
+ *
+ *  No backend, no server, no API keys needed. 50 submissions/month free.
+ * ─────────────────────────────────────────────────────────────────────────── */
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // ← replace with your ID from formspree.io
+
+type Status = 'idle' | 'sending' | 'success' | 'error';
 
 const ContactSection = () => {
   const { ref, isVisible } = useScrollReveal(0.1);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-  };
 
-  const inputStyle: React.CSSProperties = {
-    width:           '100%',
-    background:      'var(--bg2)',
-    border:          '1px solid var(--border-color)',
-    borderRadius:    '0.5rem',
-    padding:         '0.75rem 1rem',
-    color:           'var(--white)',
-    fontFamily:      'var(--font-body)',
-    fontSize:        '0.9rem',
-    outline:         'none',
-    transition:      'border-color 0.2s',
+    // If user hasn't set up Formspree yet, explain clearly
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      alert(
+        'Email delivery not yet configured.\n\n' +
+        'To enable it:\n' +
+        '1. Sign up free at formspree.io\n' +
+        '2. Create a new form\n' +
+        '3. Copy your Form ID into ContactSection.tsx'
+      );
+      return;
+    }
+
+    setStatus('sending');
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body:    JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 4000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
   };
 
   return (
-    <section id="contact" className="section" style={{ background: 'rgba(13,17,23,0.6)' }}>
+    <section id="contact" className="section contact-bg">
       <div className="section-inner">
         <p className="section-label">// Get In Touch</p>
         <h2 className="section-title">Con<span>tact</span></h2>
 
-        <div
-          ref={ref}
-          style={{
-            display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap:                 '4rem',
-          }}
-        >
-          {/* ── Left: Info ─────────────────────────────────── */}
+        <div ref={ref} className="contact-grid">
+
+          {/* ── Left: Info + socials + references ──────────── */}
           <div className={`reveal ${isVisible ? 'visible' : ''}`}>
-            <p style={{ color: '#a0aec0', fontSize: '0.95rem', lineHeight: 1.8, marginBottom: '2rem' }}>
-              I'm actively looking for PhD opportunities and research collaborations. Feel free to reach out!
+            <p className="contact-intro">
+              I'm actively looking for PhD opportunities and research collaborations.
+              Feel free to reach out — I usually respond within 24 hours.
             </p>
 
-            {/* Contact items */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+            <div className="contact-items">
               {[
-                { icon: <Mail size={16} />,   text: personalInfo.email },
-                { icon: <Phone size={16} />,  text: personalInfo.phone },
-                { icon: <MapPin size={16} />, text: personalInfo.location },
+                { icon: <Mail size={16} />,   text: personalInfo.email,    href: `mailto:${personalInfo.email}` },
+                { icon: <Phone size={16} />,  text: personalInfo.phone,    href: `tel:${personalInfo.phone}` },
+                { icon: <MapPin size={16} />, text: personalInfo.location, href: undefined },
               ].map(item => (
-                <div
-                  key={item.text}
-                  style={{
-                    display:    'flex',
-                    alignItems: 'center',
-                    gap:        '1rem',
-                    background: 'var(--bg3)',
-                    border:     '1px solid var(--border-color)',
-                    borderRadius:'0.5rem',
-                    padding:    '0.85rem 1.1rem',
-                  }}
-                >
-                  <span style={{ color: 'var(--cyan)', flexShrink: 0 }}>{item.icon}</span>
-                  <span style={{ fontSize: '0.875rem', color: '#a0aec0' }}>{item.text}</span>
+                <div key={item.text} className="contact-item">
+                  <span className="contact-item-icon">{item.icon}</span>
+                  {item.href
+                    ? <a href={item.href} className="contact-item-text contact-item-link">{item.text}</a>
+                    : <span className="contact-item-text">{item.text}</span>
+                  }
                 </div>
               ))}
             </div>
 
-            {/* Socials */}
-            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '2.5rem' }}>
+            <div className="social-row">
               {[
-                { icon: <Github size={18} />,    href: personalInfo.socials.github,   label: 'GitHub' },
-                { icon: <Linkedin size={18} />,  href: personalInfo.socials.linkedin, label: 'LinkedIn' },
-                { icon: <BookOpen size={18} />,  href: personalInfo.socials.scholar,  label: 'Scholar' },
+                { icon: <Github size={18} />,   href: personalInfo.socials.github,   label: 'GitHub' },
+                { icon: <Linkedin size={18} />, href: personalInfo.socials.linkedin, label: 'LinkedIn' },
+                { icon: <BookOpen size={18} />, href: personalInfo.socials.scholar,  label: 'Scholar' },
               ].map(s => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  style={{
-                    width:          '42px',
-                    height:         '42px',
-                    display:        'flex',
-                    alignItems:     'center',
-                    justifyContent: 'center',
-                    border:         '1px solid var(--border-color)',
-                    borderRadius:   '0.4rem',
-                    color:          'var(--muted)',
-                    transition:     'border-color 0.2s, color 0.2s',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--cyan)';
-                    (e.currentTarget as HTMLElement).style.color = 'var(--cyan)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-color)';
-                    (e.currentTarget as HTMLElement).style.color = 'var(--muted)';
-                  }}
-                >
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                   aria-label={s.label} className="social-btn">
                   {s.icon}
                 </a>
               ))}
             </div>
 
-            {/* References */}
-            <h4
-              style={{
-                fontFamily:    'var(--font-mono)',
-                fontSize:      '0.7rem',
-                color:         'var(--muted)',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                marginBottom:  '1rem',
-              }}
-            >
-              References
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {references.map(ref => (
-                <div
-                  key={ref.name}
-                  style={{
-                    background:  'var(--bg3)',
-                    border:      '1px solid var(--border-color)',
-                    borderRadius:'0.5rem',
-                    padding:     '0.85rem 1.1rem',
-                  }}
-                >
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.875rem', fontWeight: 700, marginBottom: '0.15rem' }}>
-                    {ref.name}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--muted)', marginBottom: '0.15rem' }}>
-                    {ref.title} · {ref.institution}
-                  </div>
-                  <a
-                    href={`mailto:${ref.email}`}
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--cyan)' }}
-                  >
-                    {ref.email}
-                  </a>
+            <p className="subsection-label" style={{ marginTop: '2rem' }}>References</p>
+            <div className="ref-list">
+              {references.map(r => (
+                <div key={r.name} className="ref-card">
+                  <div className="ref-name">{r.name}</div>
+                  <div className="ref-role">{r.title} · {r.institution}</div>
+                  <a href={`mailto:${r.email}`} className="ref-email">{r.email}</a>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* ── Right: Contact form ─────────────────────────── */}
+          {/* ── Right: Formspree-powered form ──────────────── */}
           <div className={`reveal reveal-delay-2 ${isVisible ? 'visible' : ''}`}>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div>
-                <label
-                  htmlFor="name"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--muted)', letterSpacing: '0.08em', marginBottom: '0.4rem' }}
-                >
-                  Your Name
-                </label>
+            <form onSubmit={handleSubmit} className="contact-form">
+
+              {/* Name */}
+              <div className="form-field">
+                <label htmlFor="name" className="form-label">Your Name</label>
                 <input
-                  id="name"
-                  type="text"
-                  required
+                  id="name" type="text" required
                   value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                   placeholder="Dr. Jane Smith"
-                  style={inputStyle}
-                  onFocus={e => ((e.target as HTMLElement).style.borderColor = 'rgba(0,229,255,0.4)')}
-                  onBlur={e  => ((e.target as HTMLElement).style.borderColor = 'var(--border-color)')}
+                  className="form-input"
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--muted)', letterSpacing: '0.08em', marginBottom: '0.4rem' }}
-                >
-                  Your Email
-                </label>
+              {/* Email */}
+              <div className="form-field">
+                <label htmlFor="email" className="form-label">Your Email</label>
                 <input
-                  id="email"
-                  type="email"
-                  required
+                  id="email" type="email" required
                   value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   placeholder="jane@university.edu"
-                  style={inputStyle}
-                  onFocus={e => ((e.target as HTMLElement).style.borderColor = 'rgba(0,229,255,0.4)')}
-                  onBlur={e  => ((e.target as HTMLElement).style.borderColor = 'var(--border-color)')}
+                  className="form-input"
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor="message"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--muted)', letterSpacing: '0.08em', marginBottom: '0.4rem' }}
-                >
+              {/* Message — no character limit enforced, but 5000 char soft guide */}
+              <div className="form-field">
+                <label htmlFor="message" className="form-label">
                   Message
+                  <span style={{ float:'right', fontFamily:'var(--font-mono)', fontSize:'0.68rem', color:'var(--muted)', fontWeight:400 }}>
+                    {form.message.length} / 5000
+                  </span>
                 </label>
                 <textarea
-                  id="message"
-                  required
-                  rows={6}
+                  id="message" required rows={7}
+                  maxLength={5000}
                   value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                   placeholder="I'd love to discuss a potential PhD collaboration..."
-                  style={{ ...inputStyle, resize: 'vertical', minHeight: '130px' }}
-                  onFocus={e => ((e.target as HTMLElement).style.borderColor = 'rgba(0,229,255,0.4)')}
-                  onBlur={e  => ((e.target as HTMLElement).style.borderColor = 'var(--border-color)')}
+                  className="form-input form-textarea"
                 />
               </div>
 
+              {/* Submit button */}
               <button
                 type="submit"
                 className="btn-primary"
-                style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
+                disabled={status === 'sending'}
+                style={{ alignSelf: 'flex-start', marginTop: '0.25rem', opacity: status === 'sending' ? 0.7 : 1 }}
               >
                 <Send size={14} />
-                {sent ? 'Opening mail client...' : 'Send Message'}
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
               </button>
+
+              {/* Feedback banners */}
+              {status === 'success' && (
+                <div style={{
+                  display:'flex', alignItems:'center', gap:'0.5rem',
+                  marginTop:'1rem', padding:'0.75rem 1rem',
+                  background:'rgba(77,196,255,0.08)', border:'1px solid rgba(77,196,255,0.3)',
+                  borderRadius:'0.5rem', color:'var(--cyan)',
+                  fontFamily:'var(--font-mono)', fontSize:'0.8rem',
+                }}>
+                  <CheckCircle size={16} />
+                  Message sent! I'll reply within 24 hours.
+                </div>
+              )}
+              {status === 'error' && (
+                <div style={{
+                  display:'flex', alignItems:'center', gap:'0.5rem',
+                  marginTop:'1rem', padding:'0.75rem 1rem',
+                  background:'rgba(255,107,107,0.08)', border:'1px solid rgba(255,107,107,0.3)',
+                  borderRadius:'0.5rem', color:'#ff6b6b',
+                  fontFamily:'var(--font-mono)', fontSize:'0.8rem',
+                }}>
+                  <AlertCircle size={16} />
+                  Failed to send. Please email directly: {personalInfo.email}
+                </div>
+              )}
             </form>
           </div>
+
         </div>
       </div>
     </section>

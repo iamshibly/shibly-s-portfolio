@@ -1,5 +1,6 @@
 import { experience } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Briefcase } from 'lucide-react';
 
 const ExperienceSection = () => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -7,53 +8,66 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="section">
       <div className="section-inner">
-        <p className="section-label">// Professional</p>
-        <h2 className="section-title">Experi<span>ence</span></h2>
+        <p className="section-label">// Professional Experience</p>
+        <h2 className="section-title">Industry <span>Experience</span></h2>
 
-        <div
-          ref={ref}
-          style={{
-            display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap:                 '1.5rem',
-          }}
-        >
+        <div ref={ref} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {experience.map((exp, i) => (
             <div
               key={i}
-              className={`card-base reveal ${i === 1 ? 'reveal-delay-2' : ''} ${isVisible ? 'visible' : ''}`}
-              style={{
-                borderLeft:    '3px solid transparent',
-                borderImage:   'linear-gradient(to bottom, var(--pink), var(--gold)) 1',
-                borderRadius:  '0.85rem',
-                paddingLeft:   '1.75rem',
-              }}
+              className={`card-base card-accent-left reveal ${i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''} ${isVisible ? 'visible' : ''}`}
+              style={{ paddingLeft: '2rem' }}
             >
-              <div
+              {/* Date — mono cyan */}
+              <p
                 style={{
                   fontFamily:    'var(--font-mono)',
-                  fontSize:      '0.7rem',
-                  color:         'var(--pink)',
-                  letterSpacing: '0.06em',
-                  marginBottom:  '0.4rem',
+                  fontSize:      '0.72rem',
+                  color:         'var(--cyan)',
+                  letterSpacing: '0.08em',
+                  marginBottom:  '0.6rem',
                 }}
               >
                 {exp.date}
-              </div>
+              </p>
+
+              {/* Role — large white display font */}
               <h3
                 style={{
-                  fontFamily:  'var(--font-display)',
-                  fontSize:    '1.05rem',
-                  fontWeight:  700,
-                  marginBottom:'0.2rem',
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     'clamp(1.1rem, 2vw, 1.3rem)',
+                  fontWeight:   700,
+                  color:        'var(--white)',
+                  marginBottom: '0.25rem',
+                  lineHeight:   1.25,
                 }}
               >
                 {exp.role}
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '0.85rem' }}>
+
+              {/* Organisation — gold accent */}
+              <p
+                style={{
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     '0.95rem',
+                  fontWeight:   500,
+                  color:        'var(--gold)',
+                  marginBottom: '1rem',
+                  letterSpacing:'-0.01em',
+                }}
+              >
+                <Briefcase size={13} style={{ display: 'inline', marginRight: '0.4rem', opacity: 0.7 }} />
                 {exp.org}
               </p>
-              <p style={{ fontSize: '0.875rem', color: '#a0aec0', lineHeight: 1.7 }}>
+
+              {/* Description — creamy warm muted */}
+              <p
+                style={{
+                  fontSize:   '0.9rem',
+                  color:      'var(--muted)',
+                  lineHeight: 1.75,
+                }}
+              >
                 {exp.description}
               </p>
             </div>

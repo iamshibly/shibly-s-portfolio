@@ -14,14 +14,14 @@ const Layout = ({ children }: Props) => {
       document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
         el.classList.add('visible');
       });
-    }, 3000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
       <CustomCursor />
-      <NeuralCanvas fixed nodeCount={90} connectionDistance={180} opacity={0.3} />
+      <NeuralCanvas fixed nodeCount={60} connectionDistance={150} opacity={0.25} />
       <TopNav />
       <main style={{ position: 'relative', zIndex: 2 }}>
         {children}

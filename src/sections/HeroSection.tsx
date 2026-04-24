@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Download, BookOpen, Github, Linkedin, Play } from 'lucide-react';
+import { ExternalLink, BookOpen, Github, Linkedin, Play } from 'lucide-react';
 import { personalInfo, heroStats } from '../data/portfolio';
 import { useScrollReveal, useCountUp } from '../hooks/useScrollReveal';
 import VideoModal from '../components/VideoModal';
@@ -66,11 +66,12 @@ const HeroSection = () => {
               className="fade-up fade-up-2"
               style={{
                 fontFamily: 'var(--font-display)',
-                fontWeight: 800,
-                fontSize:   'clamp(2.8rem, 6vw, 5.2rem)',
-                lineHeight: 1.0,
-                marginBottom: '0.7rem',
-                letterSpacing: '-0.01em',
+                fontWeight: 700,
+                fontSize:   'clamp(2.1rem, 5.5vw, 4.4rem)', /* Smaller max to prevent wrapping of Md. Zubayer Ahmad */
+                lineHeight: 1.05,
+                marginBottom: '0.8rem',
+                letterSpacing: '-0.02em',
+                whiteSpace: 'nowrap', /* Force no wrapping inside the individual lines */
               }}
             >
               {/* Line 1 — solid + glitch */}
@@ -127,8 +128,8 @@ const HeroSection = () => {
               className="fade-up fade-up-5"
               style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2.5rem' }}
             >
-              <a href={personalInfo.cvUrl} download className="btn-primary">
-                <Download size={14} /> Download CV
+              <a href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <ExternalLink size={14} /> View CV
               </a>
               <a href={personalInfo.socials.scholar} target="_blank" rel="noopener noreferrer" className="btn-outline">
                 <BookOpen size={14} /> Scholar
@@ -163,7 +164,7 @@ const HeroSection = () => {
           </div>
 
           {/* ── Right: Video launcher ─────────────────────────── */}
-          <div className="fade-up fade-up-7 hero-video-col" style={{ flex: '0 0 320px', maxWidth: '320px' }}>
+          <div className="fade-up fade-up-7 hero-video-col" style={{ flex: '0 0 280px', maxWidth: '280px' }}>
             <button
               onClick={() => setVideoOpen(true)}
               aria-label={`Play ${personalInfo.videoLabel}`}
@@ -226,7 +227,7 @@ const HeroSection = () => {
                   }}
                 >
                   <div className="hero-play-ring">
-                    <Play size={22} fill="var(--cyan)" stroke="none" style={{ marginLeft: '3px' }} />
+                    <Play size={28} fill="var(--cyan)" stroke="none" style={{ marginLeft: '4px' }} />
                   </div>
                   <span
                     style={{
@@ -298,8 +299,8 @@ const HeroSection = () => {
           box-shadow:   0 12px 40px rgba(0,229,255,0.18);
         }
         .hero-play-ring {
-          width:           56px;
-          height:          56px;
+          width:           72px;
+          height:          72px;
           border-radius:   50%;
           background:      rgba(0,229,255,0.12);
           border:          1.5px solid rgba(0,229,255,0.5);

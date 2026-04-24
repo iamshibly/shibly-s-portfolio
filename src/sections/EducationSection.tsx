@@ -5,10 +5,10 @@ const EducationSection = () => {
   const { ref, isVisible } = useScrollReveal(0.1);
 
   return (
-    <section id="education" className="section" style={{ background: 'rgba(13,17,23,0.6)' }}>
+    <section id="education" className="section">
       <div className="section-inner">
-        <p className="section-label">// Academic Background</p>
-        <h2 className="section-title">Edu<span>cation</span></h2>
+        <p className="section-label">// Education</p>
+        <h2 className="section-title">Academic <span>Background</span></h2>
 
         <div ref={ref} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {education.map((edu, i) => (
@@ -17,7 +17,8 @@ const EducationSection = () => {
               className={`card-base card-accent-left reveal ${isVisible ? 'visible' : ''}`}
               style={{ paddingLeft: '2rem' }}
             >
-              <div
+              {/* Year */}
+              <p
                 style={{
                   fontFamily:    'var(--font-mono)',
                   fontSize:      '0.72rem',
@@ -27,28 +28,41 @@ const EducationSection = () => {
                 }}
               >
                 {edu.year}
-              </div>
+              </p>
 
+              {/* Degree */}
               <h3
                 style={{
-                  fontFamily:  'var(--font-display)',
-                  fontSize:    '1.2rem',
-                  fontWeight:  700,
-                  marginBottom:'0.25rem',
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     'clamp(1.1rem, 2vw, 1.3rem)',
+                  fontWeight:   700,
+                  lineHeight:   1.2,
+                  marginBottom: '0.3rem',
                 }}
               >
                 {edu.degree}
               </h3>
 
-              <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+              {/* Institution */}
+              <p
+                style={{
+                  color:        'var(--muted)',
+                  fontSize:     '0.9rem',
+                  marginBottom: '1.25rem',
+                }}
+              >
                 {edu.institution}
               </p>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.25rem' }}>
+              {/* GPA badges */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: edu.ielts ? '1.5rem' : 0 }}>
                 <span
                   style={{
+                    display:     'inline-flex',
+                    alignItems:  'center',
+                    gap:         '0.4rem',
                     fontFamily:  'var(--font-mono)',
-                    fontSize:    '0.75rem',
+                    fontSize:    '0.78rem',
                     background:  'rgba(255,209,102,0.1)',
                     color:       'var(--gold)',
                     border:      '1px solid rgba(255,209,102,0.25)',
@@ -56,13 +70,15 @@ const EducationSection = () => {
                     padding:     '0.3rem 0.8rem',
                   }}
                 >
-                  CGPA: {edu.cgpa}
+                  ★ CGPA {edu.cgpa}
                 </span>
                 {edu.cgpaRecent && (
                   <span
                     style={{
+                      display:     'inline-flex',
+                      alignItems:  'center',
                       fontFamily:  'var(--font-mono)',
-                      fontSize:    '0.75rem',
+                      fontSize:    '0.78rem',
                       background:  'rgba(255,107,157,0.08)',
                       color:       'var(--pink)',
                       border:      '1px solid rgba(255,107,157,0.2)',
@@ -70,61 +86,80 @@ const EducationSection = () => {
                       padding:     '0.3rem 0.8rem',
                     }}
                   >
-                    {edu.cgpaRecent}
+                    ↑ {edu.cgpaRecent}
                   </span>
                 )}
               </div>
 
+              {/* IELTS row */}
               {edu.ielts && (
                 <div
                   style={{
-                    borderTop:  '1px solid var(--border-color)',
-                    paddingTop: '1rem',
+                    borderTop:   '1px solid var(--border-color)',
+                    paddingTop:  '1.25rem',
+                    display:     'flex',
+                    alignItems:  'center',
+                    gap:         '2.5rem',
+                    flexWrap:    'wrap',
                   }}
                 >
-                  <div
-                    style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '0.7rem',
-                      color:         'var(--muted)',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      marginBottom:  '0.75rem',
-                    }}
-                  >
-                    IELTS Academic — Overall Band {edu.ielts.overall}
+                  {/* Overall score */}
+                  <div>
+                    <p
+                      style={{
+                        fontFamily:    'var(--font-mono)',
+                        fontSize:      '0.68rem',
+                        color:         'var(--muted)',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        marginBottom:  '0.3rem',
+                      }}
+                    >
+                      IELTS Academic
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize:   '2.8rem',
+                        fontWeight: 800,
+                        color:      'var(--gold)',
+                        lineHeight: 1,
+                      }}
+                    >
+                      {edu.ielts.overall}
+                    </p>
                   </div>
-                  <div
-                    style={{
-                      display:             'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                      gap:                 '0.5rem',
-                    }}
-                  >
+
+                  {/* Sub-scores */}
+                  <div style={{ display: 'flex', gap: '1.8rem', flexWrap: 'wrap' }}>
                     {[
-                      { skill: 'Listening', score: edu.ielts.listening },
-                      { skill: 'Reading',   score: edu.ielts.reading },
-                      { skill: 'Writing',   score: edu.ielts.writing },
-                      { skill: 'Speaking',  score: edu.ielts.speaking },
-                    ].map(({ skill, score }) => (
-                      <div
-                        key={skill}
-                        style={{
-                          background:  'rgba(0,229,255,0.04)',
-                          border:      '1px solid var(--border-color)',
-                          borderRadius:'0.4rem',
-                          padding:     '0.5rem 0.75rem',
-                          display:     'flex',
-                          justifyContent:'space-between',
-                          alignItems:  'center',
-                        }}
-                      >
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--muted)' }}>
-                          {skill}
-                        </span>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--cyan)', fontWeight: 600 }}>
+                      { label: 'Listening', score: edu.ielts.listening },
+                      { label: 'Reading',   score: edu.ielts.reading },
+                      { label: 'Writing',   score: edu.ielts.writing },
+                      { label: 'Speaking',  score: edu.ielts.speaking },
+                    ].map(({ label, score }) => (
+                      <div key={label}>
+                        <p
+                          style={{
+                            fontFamily:    'var(--font-mono)',
+                            fontSize:      '0.68rem',
+                            color:         'var(--muted)',
+                            letterSpacing: '0.08em',
+                            marginBottom:  '0.2rem',
+                          }}
+                        >
+                          {label}
+                        </p>
+                        <p
+                          style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize:   '1.1rem',
+                            fontWeight: 700,
+                            color:      'var(--white)',
+                          }}
+                        >
                           {score}
-                        </span>
+                        </p>
                       </div>
                     ))}
                   </div>

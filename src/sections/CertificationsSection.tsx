@@ -1,132 +1,128 @@
-import { Award } from 'lucide-react';
+import { ShieldCheck, Trophy, Medal, GraduationCap, Star, Sparkles } from 'lucide-react';
 import { certifications, awards } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
+const AwardIcon = ({ icon }: { icon: string }) => {
+  const props = { size: 20, strokeWidth: 1.5 };
+  if (icon === 'trophy')     return <Trophy {...props} />;
+  if (icon === 'medal')      return <Medal {...props} />;
+  if (icon === 'graduation') return <GraduationCap {...props} />;
+  if (icon === 'star')       return <Star {...props} />;
+  return <Sparkles {...props} />;
+};
+
 const CertificationsSection = () => {
-  const { ref: awardsRef, isVisible: awardsVis } = useScrollReveal(0.1);
   const { ref: certsRef,  isVisible: certsVis  } = useScrollReveal(0.1);
+  const { ref: awardsRef, isVisible: awardsVis } = useScrollReveal(0.1);
 
   return (
     <section id="certifications" className="section">
       <div className="section-inner">
         <p className="section-label">// Achievements</p>
-        <h2 className="section-title">Certs &amp; <span>Awards</span></h2>
+        <h2 className="section-title">Certifications and <span>Awards</span></h2>
 
-        {/* Awards */}
-        <h3
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.7rem',
-            color:         'var(--muted)',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            marginBottom:  '1.25rem',
-          }}
-        >
-          Honors &amp; Awards
-        </h3>
-        <div
-          ref={awardsRef}
-          style={{
-            display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-            gap:                 '1rem',
-            marginBottom:        '3rem',
-          }}
-        >
-          {awards.map((award, i) => (
+        {/* ── Certifications FIRST ─────────────────────────────── */}
+        <p className="subsection-label">Certifications</p>
+        <div ref={certsRef} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3.5rem' }}>
+          {certifications.map((cert, i) => (
             <div
               key={i}
-              className={`card-base reveal ${i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''} ${awardsVis ? 'visible' : ''}`}
-              style={{ textAlign: 'center' }}
+              className={`reveal ${i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''} ${certsVis ? 'visible' : ''}`}
+              style={{
+                display:             'grid',
+                gridTemplateColumns: '2.5rem 1fr',
+                gap:                 '1.25rem',
+                alignItems:          'center',
+                padding:             '1.25rem 1.5rem',
+                background:          'rgba(77,196,255,0.04)',
+                border:              '1px solid rgba(77,196,255,0.14)',
+                borderLeft:          '3px solid rgba(77,196,255,0.6)',
+                borderRadius:        'var(--radius)',
+              }}
             >
-              <div style={{ fontSize: '1.75rem', marginBottom: '0.6rem' }}>{award.icon}</div>
-              <div
-                style={{
-                  fontFamily:  'var(--font-display)',
-                  fontSize:    '0.875rem',
-                  fontWeight:  700,
-                  marginBottom:'0.25rem',
-                  color:       'var(--white)',
-                }}
-              >
-                {award.name}
+              <div style={{
+                width: '2rem', height: '2rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(77,196,255,0.12)',
+                borderRadius: '50%',
+                color: 'var(--cyan)',
+                flexShrink: 0,
+              }}>
+                <ShieldCheck size={14} />
               </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize:   '0.7rem',
-                  color:      'var(--muted)',
-                }}
-              >
-                {award.org} · {award.year}
+              <div>
+                <p style={{
+                  fontFamily:   'var(--font-display)',
+                  fontWeight:   600,
+                  fontSize:     '0.95rem',
+                  color:        'var(--white)',
+                  marginBottom: '0.2rem',
+                }}>
+                  {cert.name}
+                </p>
+                <p style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '0.72rem',
+                  color:         'var(--cyan)',
+                  letterSpacing: '0.05em',
+                }}>
+                  {cert.issuer}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Certifications */}
-        <h3
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.7rem',
-            color:         'var(--muted)',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            marginBottom:  '1.25rem',
-          }}
-        >
-          Certifications
-        </h3>
+        {/* ── Honors & Awards BELOW ────────────────────────────── */}
+        <p className="subsection-label">Honors &amp; Awards</p>
         <div
-          ref={certsRef}
+          ref={awardsRef}
           style={{
             display:             'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
-            gap:                 '1rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap:                 '1.25rem',
           }}
         >
-          {certifications.map((cert, i) => (
+          {awards.map((award, i) => (
             <div
               key={i}
-              className={`card-base reveal ${i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''} ${certsVis ? 'visible' : ''}`}
-              style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+              className={`reveal ${i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''} ${awardsVis ? 'visible' : ''}`}
+              style={{
+                padding:      '1.75rem',
+                background:   'rgba(255,209,102,0.04)',
+                border:       '1px solid rgba(255,209,102,0.18)',
+                borderTop:    '3px solid rgba(255,209,102,0.55)',
+                borderRadius: 'var(--radius)',
+              }}
             >
-              <div
-                style={{
-                  flexShrink:    0,
-                  width:         '36px',
-                  height:        '36px',
-                  borderRadius:  '0.4rem',
-                  background:    'rgba(0,229,255,0.08)',
-                  border:        '1px solid var(--border-color)',
-                  display:       'flex',
-                  alignItems:    'center',
-                  justifyContent:'center',
-                  color:         'var(--cyan)',
-                }}
-              >
-                <Award size={16} />
+              <div style={{
+                width: '2.5rem', height: '2.5rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,209,102,0.12)',
+                borderRadius: '50%',
+                color: 'var(--gold)',
+                marginBottom: '1rem',
+              }}>
+                <AwardIcon icon={award.icon} />
               </div>
-              <div style={{ minWidth: 0 }}>
-                <div
-                  style={{
-                    fontFamily:  'var(--font-display)',
-                    fontSize:    '0.875rem',
-                    fontWeight:  600,
-                    marginBottom:'0.15rem',
-                    whiteSpace:  'nowrap',
-                    overflow:    'hidden',
-                    textOverflow:'ellipsis',
-                  }}
-                  title={cert.name}
-                >
-                  {cert.name}
-                </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--muted)' }}>
-                  {cert.issuer}
-                </div>
-              </div>
+              <p style={{
+                fontFamily:   'var(--font-display)',
+                fontSize:     '1rem',
+                fontWeight:   700,
+                color:        'var(--white)',
+                marginBottom: '0.5rem',
+                lineHeight:   1.4,
+              }}>
+                {award.name}
+              </p>
+              <p style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '0.72rem',
+                color:         'var(--gold)',
+                letterSpacing: '0.05em',
+              }}>
+                {award.org} · {award.year}
+              </p>
             </div>
           ))}
         </div>
