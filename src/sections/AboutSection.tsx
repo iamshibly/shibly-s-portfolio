@@ -75,7 +75,7 @@ const AboutSection = () => {
                 display:      'flex',
                 alignItems:   'center',
                 justifyContent:'center',
-                width:        '60%',
+                width:        '45%',
                 marginLeft:   'auto',
                 marginRight:  'auto',
               }}

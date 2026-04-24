@@ -32,7 +32,7 @@ export const heroStats: { target: number; label: string }[] = [
   { target: 5,  label: 'Accepted Papers' },
   { target: 8,  label: 'Under Review' },
   { target: 3,  label: 'Projects' },
-  { target: 1,  label: 'Departmental Rank' },
+  { target: 1,  label: 'CSE Department Batch Rank' },
 ];
 
 /* ─── About ──────────────────────────────────────────────────── */
