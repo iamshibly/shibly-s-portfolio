@@ -2,7 +2,7 @@
 
 A single-page academic portfolio built from scratch — no templates, no off-the-shelf portfolio kits. Every section, animation, and data model was designed for showcasing applied-AI research: publications with flagship-conference highlighting, real collaborators, a dark "deep-space" visual language, and a live contact channel.
 
-**Live site:** https://dist-gnixuqhq.devinapps.com
+**Live site:** https://iamshibly.github.io/shibly-s-portfolio/
 
 ---
 
@@ -73,7 +73,7 @@ Main exports:
 - `projects` — engineering projects (GitHub + live-demo links).
 - `collaborators` — with headshots in `public/collaborators/`.
 - `experience` — roles with dates + bullets.
-- `skills` — grouped skill tags (Federated Learning is positioned intentionally after Deep Learning & Transformers).
+- `skills` — grouped skill tags organized into CORE & ML and TOOLS & PLATFORMS.
 - `awards` — certifications, awards, recognitions.
 - `news` — chronological news items (see `public/news/` for images).
 - `references` — contact references with `note` for badge support.
@@ -116,4 +116,4 @@ npm run build
 # upload dist/ to any static host
 ```
 
-Preview URL currently live at https://dist-gnixuqhq.devinapps.com (Devin Apps static hosting).
+Preview URL currently live at https://iamshibly.github.io/shibly-s-portfolio/.

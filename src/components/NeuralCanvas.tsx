@@ -13,6 +13,7 @@ interface Comet {
   vx: number; vy: number;
   length: number;
   opacity: number;
+  thickness: number;
   active: boolean;
 }
 
@@ -37,7 +38,7 @@ const NeuralCanvas = ({
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext('2d')!;
     let nodes: Node[] = [];
-    const comet: Comet = { x: 0, y: 0, vx: 0, vy: 0, length: 0, opacity: 0, active: false };
+    const comet: Comet = { x: 0, y: 0, vx: 0, vy: 0, length: 0, opacity: 0, thickness: 2, active: false };
     let animId: number;
     let lastCometTime = 0;
 
@@ -82,6 +83,7 @@ const NeuralCanvas = ({
       comet.vy = 4 + Math.random() * 4;
       comet.length = 100 + Math.random() * 150;
       comet.opacity = 1;
+      comet.thickness = 1 + Math.random() * 2.5;
     };
 
     const drawStar = (cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) => {
@@ -125,7 +127,7 @@ const NeuralCanvas = ({
 
           ctx.beginPath();
           ctx.strokeStyle = grad;
-          ctx.lineWidth = 2;
+          ctx.lineWidth = comet.thickness;
           ctx.lineCap = "round";
           ctx.moveTo(comet.x, comet.y);
           ctx.lineTo(comet.x - comet.vx * (comet.length / 10), comet.y - comet.vy * (comet.length / 10));
@@ -133,13 +135,13 @@ const NeuralCanvas = ({
           
           // Comet head glow
           ctx.beginPath();
-          ctx.arc(comet.x, comet.y, 3, 0, Math.PI * 2);
+          ctx.arc(comet.x, comet.y, comet.thickness * 1.5 + 1.5, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(240, 248, 255, ${comet.opacity})`;
           ctx.fill();
         }
       } else {
-        // Trigger randomly every 10-20 seconds
-        if (time - lastCometTime > 10000 + Math.random() * 10000) {
+        // Trigger randomly every 7-15 seconds
+        if (time - lastCometTime > 7000 + Math.random() * 8000) {
           triggerComet();
           lastCometTime = time;
         }

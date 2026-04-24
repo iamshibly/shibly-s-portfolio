@@ -16,7 +16,7 @@ const SkillsSection = () => {
           style={{
             display:             'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap:                 '0 5rem',
+            gap:                 '4rem 5rem',
             marginTop:           '2rem',
           }}
         >

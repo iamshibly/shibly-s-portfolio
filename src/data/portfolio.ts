@@ -409,29 +409,24 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    groupTitle: 'AI / ML Research',
+    groupTitle: 'CORE & ML',
     skills: [
-      { name: 'Deep Learning & Transformers',      level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
-      { name: 'Federated & Privacy-Preserving ML', level: 88, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision', 'Interpretable'] },
-      { name: 'Explainable AI',                    level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
-      { name: 'Feature Engineering & Selection',   level: 90, tags: ['Genetic FS', 'RFE', 'QUBO', 'Stability'] },
+      { name: 'Federated Learning',             level: 90, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision'] },
+      { name: 'Machine Learning',               level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'ML Algorithms'] },
+      { name: 'Deep Learning & Transformers',   level: 92, tags: ['PyTorch', 'TensorFlow', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Explainable AI',                 level: 90, tags: ['SHAP', 'LIME', 'Grad-CAM', 'PDP', 'ICE', 'ALE'] },
+      { name: 'Agentic AI',                     level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Agents', 'Tools'] },
+      { name: 'Programming',                    level: 88, tags: ['Python', 'C', 'Java', 'Dart'] },
     ],
   },
   {
-    groupTitle: 'LLM / Agents',
+    groupTitle: 'TOOLS & PLATFORMS',
     skills: [
-      { name: 'Agent Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Agents', 'Tools'] },
-      { name: 'Retrieval-Augmented Generation', level: 80, tags: ['RAG', 'Vector Stores', 'Embeddings'] },
-      { name: 'Chains & Parsers',        level: 80, tags: ['Chains', 'Output Parsers', 'Prompt Templates'] },
-    ],
-  },
-  {
-    groupTitle: 'Data & Engineering',
-    skills: [
-      { name: 'Data Analysis & Statistics',   level: 88, tags: ['NumPy', 'Pandas', 'Experimental Design'] },
-      { name: 'Programming',                  level: 85, tags: ['Python', 'C', 'Java', 'Dart', 'Flutter'] },
-      { name: 'Tools & Workflows',            level: 85, tags: ['scikit-learn', 'Matplotlib', 'Jupyter', 'Colab', 'Git', 'Overleaf', 'FastAPI', 'Next.js', 'TypeScript'] },
-      { name: 'Databases & Productivity',     level: 75, tags: ['MySQL', 'MongoDB', 'LaTeX', 'Excel'] },
+      { name: 'Development Tools',       level: 90, tags: ['Git', 'GitHub', 'VS Code', 'LaTeX', 'Overleaf'] },
+      { name: 'LLM Frameworks',          level: 82, tags: ['LangChain', 'LangGraph', 'Chains', 'Output Parsers', 'Prompt Templates'] },
+      { name: 'Data & ML Libraries',     level: 88, tags: ['NumPy', 'Pandas', 'scikit-learn', 'Jupyter', 'Colab'] },
+      { name: 'Visualization & Apps',    level: 82, tags: ['Streamlit', 'Matplotlib', 'Seaborn'] },
+      { name: 'Databases',               level: 78, tags: ['MySQL', 'MongoDB'] },
     ],
   },
 ];
@@ -440,14 +435,14 @@ export const skillGroups: SkillGroup[] = [
 export interface Certification {
   name:   string;
   issuer: string;
+  url?:   string;
 }
 
 export const certifications: Certification[] = [
-  { name: 'Advanced Research in Machine Learning & XAI',                 issuer: 'Neural Research — Jun 2025' },
-  { name: 'Python Functions, Files, and Dictionaries',                   issuer: 'University of Michigan (Coursera) — Mar 2025' },
-  { name: 'Foundations of Project Management',                           issuer: 'Coursera — Jun 2024' },
-  { name: 'Cybersecurity Foundations',                                   issuer: 'LinkedIn Learning — Feb 2024' },
-  { name: 'ENGL210: Technical Writing',                                  issuer: 'Saylor Academy — Feb 2024' },
+  { name: 'Advanced Research in Machine Learning & XAI',                 issuer: 'Neural Research — Jun 2025', url: 'https://drive.google.com/file/d/1EwcDFTDQu56S0fL6bq1Gzc_9r-XQG4BN/view?usp=sharing' },
+  { name: 'Python Functions, Files, and Dictionaries',                   issuer: 'University of Michigan (Coursera) — Mar 2025', url: 'https://drive.google.com/file/d/1bbNJ4PNvkl5AdCAGo_j0wJ0svGuyx-4A/view?usp=sharing' },
+  { name: 'Foundations of Project Management',                           issuer: 'Coursera — Jun 2024', url: 'https://drive.google.com/file/d/1DFjPKA_hLtMpH-wAiQZHz1PjeIhp0RiL/view?usp=sharing' },
+  { name: 'Cybersecurity Foundations',                                   issuer: 'LinkedIn Learning — Feb 2024', url: 'https://drive.google.com/file/d/1gPP_fXl_n6uz8smMTaYSyNXqnf5fYAZZ/view?usp=sharing' },
 ];
 
 /* ─── Awards ─────────────────────────────────────────────────── */
@@ -455,15 +450,15 @@ export interface Award {
   icon: 'trophy' | 'medal' | 'graduation' | 'star' | 'sparkles';
   name: string;
   org:  string;
-  year: number;
+  year: string | number;
 }
 
 export const awards: Award[] = [
-  { icon: 'medal',      name: 'Ranked 1st in CSE Department',                    org: 'Southeast University',              year: 2024 },
-  { icon: 'graduation', name: 'Full Tuition Waiver Scholarship (4 years)',       org: 'Southeast University',              year: 2022 },
-  { icon: 'star',       name: 'Aspire Institute Awards — Leadership Recognition', org: 'Aspire Leaders Program 2025',       year: 2025 },
+  { icon: 'medal',      name: 'Ranked 1st in CSE Department',                    org: 'Southeast University',              year: 2026 },
+  { icon: 'trophy',     name: 'Top 22 of 650 — Harvard HSIL Hackathon (Dhaka Hub)', org: 'Harvard T.H. Chan School of Public Health', year: 2026 },
+  { icon: 'graduation', name: 'Full Tuition Waiver Scholarship (4 years)',       org: 'Southeast University',              year: '2022–2026' },
+  { icon: 'star',       name: 'Aspire Institute Awards — Leadership Recognition', org: 'Aspire Leaders Program',            year: 2025 },
   { icon: 'trophy',     name: 'Debate Competition Winner (Team President)',      org: 'FICC — Farees International Career Counseling', year: 2020 },
-  { icon: 'trophy',     name: 'Top 22 of 650 — Harvard HSIL Hackathon 2026 (Dhaka Hub)', org: 'Harvard T.H. Chan School of Public Health', year: 2026 },
 ];
 
 /* ─── News ───────────────────────────────────────────────────── */
@@ -506,14 +501,10 @@ export const news: NewsItem[] = [
     id: 'imun-2025',
     date: '5 – 6 April 2025',
     title: 'Delegate at IMUN Online Conference 260.0',
-    titleUrl: 'https://www.internationalmun.org/',
     summary:
       'Served as a Delegate at the International Model United Nations (IMUN) Online Conference 260.0 — a two-day simulation of United Nations committee sessions. Researched a country position, drafted and defended a policy brief, negotiated language across bloc talks, and worked through committee procedure alongside delegates from multiple universities and countries — practical experience in structured international negotiation and multi-stakeholder decision making.',
     image: '/news/imun-2025-cert.jpg',
     featured: false,
-    links: [
-      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1xQSNMAZcsWHuVMru1aA6vGxK2Ebdk-2z/view?usp=sharing' },
-    ],
   },
   {
     id: 'aspire-2025',
@@ -547,7 +538,7 @@ export const news: NewsItem[] = [
     date: '17 November 2025',
     title: 'Attended IEEE CS SEU SBC Workshop — "LaTeX Unlocked: Research Writing"',
     summary:
-      'Attended the "LaTeX Unlocked: The Research Writing Workshop" organised by the IEEE Computer Society, SEU Student Branch Chapter. Session facilitator: Maksuda Rabeya (Graduate Research Assistant, Augusta University). Covered document structuring, BibTeX workflows, and best practices for preparing IEEE conference and journal manuscripts.',
+      'Participated in the "LaTeX Unlocked: The Research Writing Workshop" organised by the IEEE Computer Society, SEU Student Branch Chapter. Session facilitator: Maksuda Rabeya (Graduate Research Assistant, Augusta University). Covered document structuring, BibTeX workflows, and best practices for preparing IEEE conference and journal manuscripts.',
     image: '/news/webinar-latex-2025.jpg',
     featured: false,
   },
@@ -556,7 +547,7 @@ export const news: NewsItem[] = [
     date: '26 December 2025',
     title: 'Attended IEEE CS SEU SBC Webinar — "Programming Contest & Research"',
     summary:
-      'Attended the "Programming Contest & Research" webinar organised by the IEEE Computer Society, SEU Student Branch Chapter. Speaker: Rajon Bardhan (Graduate Research Student, Computer & Cyber Sciences, Augusta University). The session bridged competitive programming with research methodology — turning algorithmic intuition into publishable experimental design.',
+      'Engaged in the "Programming Contest & Research" webinar organised by the IEEE Computer Society, SEU Student Branch Chapter. Speaker: Rajon Bardhan (Graduate Research Student, Computer & Cyber Sciences, Augusta University). The session bridged competitive programming with research methodology — turning algorithmic intuition into publishable experimental design.',
     image: '/news/webinar-programming-contest-2025.jpg',
     featured: false,
   },
@@ -565,7 +556,7 @@ export const news: NewsItem[] = [
     date: 'January 2026',
     title: 'Top 22 of 650 — Harvard HSIL Hackathon 2026 (Dhaka Hub)',
     summary:
-      'Team MedSophia AI was selected among the top 22 out of 650 applicant teams at the 7th Edition of the Harvard Health Systems Innovation Lab (HSIL) Hackathon — Dhaka Hub, organised by the Harvard T.H. Chan School of Public Health. The hackathon focuses on applying data science and AI to real-world public-health and health-systems challenges.',
+      'Our team, Precision Health Innovators, was selected among the top 22 out of 650 applicant teams at the 7th Edition of the Harvard Health Systems Innovation Lab (HSIL) Hackathon — Dhaka Hub, organised by the Harvard T.H. Chan School of Public Health. Our project, MedSophia AI, focuses on applying data science and AI to real-world public-health and health-systems challenges.',
     image: '/news/harvard-hackathon-2026.jpg',
     featured: true,
   },
@@ -573,22 +564,18 @@ export const news: NewsItem[] = [
     id: 'neurocrack-2026',
     date: 'March 2026',
     title: 'Joined Neurocrack Technologies as AI Agent Developer Intern',
-    titleUrl: 'https://www.neurocrack.com/',
     summary:
-      'Joined Neurocrack Technologies as an AI Agent Developer Intern, building a subject-agnostic AI agent that resolves academic doubts for middle- and high-school students across any subject. Scope spans LLM orchestration, retrieval over curriculum content, tool-use for step-by-step working, and evaluation harnesses to keep answers pedagogically faithful.',
+      'Currently building a subject-agnostic AI agent that resolves academic doubts for middle- and high-school students across any subject. Scope spans LLM orchestration, retrieval over curriculum content, tool-use for step-by-step working, and evaluation harnesses to keep answers pedagogically faithful.',
     image: '/news/neurocrack-2026.jpg',
     featured: true,
-    links: [
-      { label: 'Offer Letter', url: 'https://drive.google.com/file/d/1iUtrbSoNQnVuSJTFEPpOEKysm3Q-wkjE/view?usp=sharing' },
-    ],
   },
   {
     id: 'fuzz-accepted-2026',
     date: 'March 2026',
-    title: 'Paper Accepted at IEEE FUZZ 2026 (Reims, France) — CORE B',
+    title: 'Paper Accepted at IEEE FUZZ 2026 (Maastricht, Netherlands) — CORE B',
     summary:
-      '"Developing an explainable federated intrusion detection framework based on Empirical Bernstein-certified Bandit-KL mixing with tree stacking" — accepted at FUZZ-IEEE 2026 (6–9 July, Reims, France), a CORE B flagship venue for fuzzy systems. Collaborative work with Dr. Maybin Muyeba (University of Salford, UK) combining federated learning, certified confidence bounds, and interpretable tree-based models for network intrusion detection.',
-    image: '/news/fuzz-ieee-2026.jpg',
+      '"Developing an explainable federated intrusion detection framework based on Empirical Bernstein-certified Bandit-KL mixing with tree stacking" — accepted at FUZZ-IEEE 2026. This conference is part of the IEEE World Congress on Computational Intelligence (WCCI) 2026, which brings together the flagship conferences of the IEEE Computational Intelligence Society. The event will take place from 21st to 26th June 2026 at MECC Maastricht, Netherlands. Collaborative work with Dr. Maybin Muyeba (University of Salford, UK) combining federated learning, certified confidence bounds, and interpretable tree-based models for network intrusion detection.',
+    image: 'https://attend.ieee.org/wcci-2026/wp-content/uploads/sites/689/homepage-banner_boven-WCCI-1.jpg',
     featured: false,
   },
   {

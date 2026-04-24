@@ -1,4 +1,4 @@
-import { ShieldCheck, Trophy, Medal, GraduationCap, Star, Sparkles } from 'lucide-react';
+import { ShieldCheck, Trophy, Medal, GraduationCap, Star, Sparkles, ExternalLink } from 'lucide-react';
 import { certifications, awards } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -50,16 +50,39 @@ const CertificationsSection = () => {
               }}>
                 <ShieldCheck size={14} />
               </div>
-              <div>
-                <p style={{
-                  fontFamily:   'var(--font-display)',
-                  fontWeight:   600,
-                  fontSize:     '0.95rem',
-                  color:        'var(--white)',
-                  marginBottom: '0.2rem',
-                }}>
-                  {cert.name}
-                </p>
+              <div className="cert-link-wrapper">
+                {cert.url ? (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cert-link"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <p style={{
+                      fontFamily:   'var(--font-display)',
+                      fontWeight:   600,
+                      fontSize:     '0.95rem',
+                      marginBottom: '0.2rem',
+                      display:      'flex',
+                      alignItems:   'center',
+                      gap:          '0.4rem',
+                    }}>
+                      {cert.name}
+                      <ExternalLink size={12} className="cert-link-icon" />
+                    </p>
+                  </a>
+                ) : (
+                  <p style={{
+                    fontFamily:   'var(--font-display)',
+                    fontWeight:   600,
+                    fontSize:     '0.95rem',
+                    color:        'var(--white)',
+                    marginBottom: '0.2rem',
+                  }}>
+                    {cert.name}
+                  </p>
+                )}
                 <p style={{
                   fontFamily:    'var(--font-mono)',
                   fontSize:      '0.72rem',
@@ -127,6 +150,23 @@ const CertificationsSection = () => {
           ))}
         </div>
       </div>
+      <style>{`
+        .cert-link p {
+          color: var(--white);
+          transition: color 0.2s ease;
+        }
+        .cert-link-icon {
+          opacity: 0.4;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .cert-link:hover p {
+          color: var(--cyan);
+        }
+        .cert-link:hover .cert-link-icon {
+          opacity: 1;
+          transform: translateY(-1px) translateX(1px);
+        }
+      `}</style>
     </section>
   );
 };
