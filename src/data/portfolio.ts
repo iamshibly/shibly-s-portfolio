@@ -412,10 +412,10 @@ export const skillGroups: SkillGroup[] = [
     groupTitle: 'CORE & ML',
     skills: [
       { name: 'Federated Learning',             level: 90, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision'] },
-      { name: 'Machine Learning',               level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'ML Algorithms'] },
       { name: 'Deep Learning & Transformers',   level: 92, tags: ['PyTorch', 'TensorFlow', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Machine Learning',               level: 92, tags: ['Feature Engineering', 'Feature Selection', 'Data Preprocessing', 'Data Analysis', 'Statistics', 'Genetic FS', 'ML Algorithms'] },
       { name: 'Explainable AI',                 level: 90, tags: ['SHAP', 'LIME', 'Grad-CAM', 'PDP', 'ICE', 'ALE'] },
-      { name: 'Agentic AI',                     level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Agents', 'Tools'] },
+      { name: 'Agentic AI',                     level: 82, tags: ['RAG', 'Vector Stores', 'Embeddings', 'Parsers', 'Agents'] },
       { name: 'Programming',                    level: 88, tags: ['Python', 'C', 'Java', 'Dart'] },
     ],
   },
