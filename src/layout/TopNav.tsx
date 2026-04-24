@@ -50,7 +50,7 @@ const LogoSlot = ({ scrolled }: { scrolled: boolean }) => {
       {!imgFailed ? (
         <img
           src={LOGO_SRC}
-          alt="Md. Zubayer Ahmad Shibly Logo"
+          alt="Md. Zubayer Ahmad Shibly — Portfolio"
           height={36}
           onError={() => setImgFailed(true)}
           style={{ height: '36px', width: 'auto', display: 'block' }}

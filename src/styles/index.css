@@ -4,28 +4,37 @@
 @tailwind utilities;
 
 /* ════════════════════════════════════════════════════════════════
-   DESIGN TOKENS
-   Source of truth: following_index.html
+   DESIGN TOKENS — THEME AWARE
+   The default palette is "Academic Navy". Switching themes is done by
+   setting `data-theme` on the <html> root (see PaletteSwitcher.tsx).
+   Token meanings are shared across all themes:
+     --cyan   → primary accent (titles, links)
+     --gold   → secondary accent (highlights, CTAs)
+     --pink   → tertiary accent (glitch layer, subtle gradients)
    ════════════════════════════════════════════════════════════════ */
-:root {
-  /* Backgrounds */
-  --bg:   #040a08;   /* deep greenish black */
-  --bg2:  #08120e;   /* slightly raised surfaces */
-  --bg3:  #0a1813;   /* cards, elevated panels */
+:root,
+:root[data-theme="academic-navy"] {
+  /* Backgrounds — deep scholarly navy */
+  --bg:   #0b1220;
+  --bg2:  #111b2e;
+  --bg3:  #16243d;
 
-  /* Accent palette */
-  --cyan: #4dc4ff;   /* sky blue (kept for titles) */
-  --gold: #ffd166;   /* golden */
-  --pink: #ffb6c1;   /* soft pink */
+  /* Accent palette — navy · teal · gold */
+  --cyan: #38bdf8;   /* sky/teal — primary */
+  --gold: #f59e0b;   /* amber gold — secondary */
+  --pink: #a78bfa;   /* academic violet — tertiary */
+  --cyan-rgb: 56, 189, 248;
+  --gold-rgb: 245, 158, 11;
+  --pink-rgb: 167, 139, 250;
 
   /* Text */
-  --white: #fdfbf7;  /* creamy white primary text */
-  --muted: #d9cdc3;  /* creamy/rosy-gold secondary text */
+  --white: #f5f7fb;  /* off-white primary text */
+  --muted: #9aa7bf;  /* cool-grey secondary text */
 
   /* Structural */
-  --border: rgba(77, 196, 255, 0.15);   /* subtle sky blue border */
-  --border-color: rgba(77, 196, 255, 0.15); /* alias */
-  --glow:   0 0 30px rgba(77, 196, 255, 0.25); /* sky blue glow */
+  --border: rgba(56, 189, 248, 0.18);
+  --border-color: rgba(56, 189, 248, 0.18);
+  --glow:   0 0 30px rgba(56, 189, 248, 0.22);
 
   /* Typography */
   --font-display: 'Outfit', sans-serif;
@@ -55,6 +64,88 @@
   --border:                 222 30% 12%;
   --input:                  222 30% 12%;
   --ring:                   188 100% 50%;
+}
+
+/* ── Alternate palette: Scholar Indigo ─────────────────────────── */
+:root[data-theme="scholar-indigo"] {
+  --bg:   #0c0a1f;
+  --bg2:  #141033;
+  --bg3:  #1c1747;
+  --cyan: #818cf8;
+  --gold: #fbbf24;
+  --pink: #34d399;
+  --cyan-rgb: 129, 140, 248;
+  --gold-rgb: 251, 191, 36;
+  --pink-rgb: 52, 211, 153;
+  --white: #f4f3ff;
+  --muted: #a5a3c7;
+  --border: rgba(129, 140, 248, 0.2);
+  --border-color: rgba(129, 140, 248, 0.2);
+  --glow:   0 0 30px rgba(129, 140, 248, 0.25);
+}
+
+/* ── Alternate palette: Oxford Maroon ──────────────────────────── */
+:root[data-theme="oxford-maroon"] {
+  --bg:   #15090b;
+  --bg2:  #22101a;
+  --bg3:  #2f1722;
+  --cyan: #f0b67f;    /* bronze / burnt sand */
+  --gold: #f5e6d3;    /* cream */
+  --pink: #e11d48;    /* maroon accent */
+  --cyan-rgb: 240, 182, 127;
+  --gold-rgb: 245, 230, 211;
+  --pink-rgb: 225, 29, 72;
+  --white: #fdf6ec;
+  --muted: #c9a89c;
+  --border: rgba(240, 182, 127, 0.22);
+  --border-color: rgba(240, 182, 127, 0.22);
+  --glow:   0 0 30px rgba(225, 29, 72, 0.2);
+}
+
+/* ── Alternate palette: Bangladesh (deep green + red + gold) ────── */
+:root[data-theme="bangladesh"] {
+  --bg:   #041612;
+  --bg2:  #08231d;
+  --bg3:  #0d3229;
+  --cyan: #10b981;    /* deep emerald */
+  --gold: #f59e0b;    /* amber gold */
+  --pink: #f43f5e;    /* national red */
+  --cyan-rgb: 16, 185, 129;
+  --gold-rgb: 245, 158, 11;
+  --pink-rgb: 244, 63, 94;
+  --white: #f0fdf4;
+  --muted: #9db8a9;
+  --border: rgba(16, 185, 129, 0.22);
+  --border-color: rgba(16, 185, 129, 0.22);
+  --glow:   0 0 30px rgba(16, 185, 129, 0.22);
+}
+
+/* ── Alternate palette: Mono Slate (minimal, print-friendly) ────── */
+:root[data-theme="mono-slate"] {
+  --bg:   #0a0f14;
+  --bg2:  #11181f;
+  --bg3:  #1a232c;
+  --cyan: #94a3b8;    /* slate */
+  --gold: #e2e8f0;    /* near-white */
+  --pink: #64748b;    /* darker slate */
+  --cyan-rgb: 148, 163, 184;
+  --gold-rgb: 226, 232, 240;
+  --pink-rgb: 100, 116, 139;
+  --white: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.2);
+  --border-color: rgba(148, 163, 184, 0.2);
+  --glow:   0 0 30px rgba(148, 163, 184, 0.2);
+}
+
+/* Smooth theme transitions */
+html { transition: background-color 0.4s ease; }
+body,
+.section,
+.card,
+[class*="btn-"],
+.contact-form .form-input {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -123,8 +214,8 @@ body::before {
    ════════════════════════════════════════════════════════════════ */
 ::-webkit-scrollbar              { width: 5px; }
 ::-webkit-scrollbar-track        { background: var(--bg2); }
-::-webkit-scrollbar-thumb        { background: rgba(0,229,255,0.25); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover  { background: rgba(0,229,255,0.45); }
+::-webkit-scrollbar-thumb        { background: rgba(var(--cyan-rgb), 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: rgba(var(--cyan-rgb), 0.45); }
 
 /* ════════════════════════════════════════════════════════════════
    CURSOR  (desktop only — touch devices fall through to auto)
@@ -146,7 +237,7 @@ body::before {
   position: fixed;
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(0, 229, 255, 0.45);
+  border: 1.5px solid rgba(var(--cyan-rgb), 0.45);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -156,7 +247,7 @@ body::before {
 
 /* Cursor state: hovered over interactive element */
 #cursor.expanded      { width: 8px;  height: 8px;  opacity: 0.6; }
-#cursor-ring.expanded { width: 48px; height: 48px; border-color: rgba(77,196,255,0.8); }
+#cursor-ring.expanded { width: 48px; height: 48px; border-color: rgba(var(--cyan-rgb), 0.8); }
 
 /* ════════════════════════════════════════════════════════════════
    SCROLL REVEAL SYSTEM
@@ -356,7 +447,7 @@ body::before {
 }
 
 .card-base:hover {
-  border-color: rgba(0, 229, 255, 0.3);
+  border-color: rgba(var(--cyan-rgb), 0.3);
   transform: translateY(-4px);
   box-shadow: var(--glow);             /* added: matches reference */
 }
@@ -399,7 +490,7 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
+  background: linear-gradient(135deg, rgba(var(--cyan-rgb), 0.04), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -442,7 +533,7 @@ body::before {
 .btn-primary:hover {
   background: #00c8e0;               /* slightly deeper cyan on hover */
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 229, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(var(--cyan-rgb), 0.3);
 }
 
 .btn-outline {
@@ -489,7 +580,7 @@ body::before {
 
 .btn-send:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 229, 255, 0.35);
+  box-shadow: 0 8px 30px rgba(var(--cyan-rgb), 0.35);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -511,7 +602,7 @@ body::before {
 
 .tag:hover,
 .interest-tag:hover {
-  background: rgba(0, 229, 255, 0.08);
+  background: rgba(var(--cyan-rgb), 0.08);
   border-color: var(--cyan);
 }
 
@@ -529,7 +620,7 @@ body::before {
 }
 
 .tech-tag:hover {
-  border-color: rgba(0, 229, 255, 0.3);
+  border-color: rgba(var(--cyan-rgb), 0.3);
   color: var(--white);
 }
 
@@ -560,14 +651,14 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
+  background: linear-gradient(135deg, rgba(var(--cyan-rgb), 0.04), transparent);
   opacity: 0;
   transition: opacity 0.25s ease;
   pointer-events: none;
 }
 
 .pub-card:hover {
-  border-color: rgba(0, 229, 255, 0.3);
+  border-color: rgba(var(--cyan-rgb), 0.3);
   transform: translateY(-3px);
   box-shadow: var(--glow);
 }
@@ -579,7 +670,7 @@ body::before {
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
-  color: rgba(0, 229, 255, 0.18);
+  color: rgba(var(--cyan-rgb), 0.18);
   line-height: 1;
   user-select: none;
   flex-shrink: 0;
@@ -658,7 +749,7 @@ body::before {
 
 .pub-link:hover {
   color: var(--cyan);
-  border-color: rgba(0, 229, 255, 0.4);
+  border-color: rgba(var(--cyan-rgb), 0.4);
 }
 
 /* Narrow screens: collapse index into top row */
@@ -687,9 +778,9 @@ body::before {
   font-size: 0.7rem;
   padding: 0.25rem 0.7rem;
   border-radius: 0.25rem;
-  background: rgba(0, 229, 255, 0.1);
+  background: rgba(var(--cyan-rgb), 0.1);
   color: var(--cyan);
-  border: 1px solid rgba(0, 229, 255, 0.2);
+  border: 1px solid rgba(var(--cyan-rgb), 0.2);
 }
 
 .badge-review {
@@ -968,7 +1059,7 @@ body::before {
 }
 
 .cert-card:hover {
-  border-color: rgba(0, 229, 255, 0.3);
+  border-color: rgba(var(--cyan-rgb), 0.3);
 }
 
 .cert-icon {
@@ -976,7 +1067,7 @@ body::before {
   width: 34px;
   height: 34px;
   border-radius: 0.4rem;
-  background: rgba(0, 229, 255, 0.08);
+  background: rgba(var(--cyan-rgb), 0.08);
   border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
@@ -1038,7 +1129,7 @@ body::before {
   transition: border-color 0.2s ease;
 }
 
-.contact-item:hover { border-color: rgba(0, 229, 255, 0.3); }
+.contact-item:hover { border-color: rgba(var(--cyan-rgb), 0.3); }
 
 .contact-item-icon { color: var(--cyan); flex-shrink: 0; display: flex; }
 
@@ -1061,7 +1152,7 @@ body::before {
   transition: border-color 0.2s ease;
 }
 
-.ref-card:hover { border-color: rgba(0, 229, 255, 0.25); }
+.ref-card:hover { border-color: rgba(var(--cyan-rgb), 0.25); }
 
 .ref-name {
   font-family: var(--font-display);
@@ -1120,7 +1211,7 @@ body::before {
   box-sizing: border-box;
 }
 
-.form-input:focus { border-color: rgba(0, 229, 255, 0.45); }
+.form-input:focus { border-color: rgba(var(--cyan-rgb), 0.45); }
 
 .form-input::placeholder { color: var(--muted); }
 

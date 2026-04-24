@@ -25,8 +25,8 @@ const ResearchCard = ({ pos, visible, delay }: { pos: ResearchPosition; visible:
           <span
             style={{
               marginLeft:  '0.75rem',
-              background:  isCyan ? 'rgba(0,229,255,0.1)' : 'rgba(255,209,102,0.1)',
-              border:      `1px solid ${isCyan ? 'rgba(0,229,255,0.25)' : 'rgba(255,209,102,0.25)'}`,
+              background:  isCyan ? 'rgba(var(--cyan-rgb), 0.1)' : 'rgba(255,209,102,0.1)',
+              border:      `1px solid ${isCyan ? 'rgba(var(--cyan-rgb), 0.25)' : 'rgba(255,209,102,0.25)'}`,
               borderRadius:'0.25rem',
               padding:     '0.1rem 0.5rem',
               fontSize:    '0.65rem',

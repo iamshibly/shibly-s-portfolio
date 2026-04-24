@@ -48,7 +48,7 @@ const HeroSection = () => {
                 display:     'inline-flex',
                 alignItems:  'center',
                 gap:         '0.6rem',
-                background:  'rgba(0,229,255,0.07)',
+                background:  'rgba(var(--cyan-rgb), 0.07)',
                 border:      '1px solid var(--border-color)',
                 borderRadius:'2rem',
                 padding:     '0.4rem 1.1rem',
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 whiteSpace: 'nowrap', /* Force no wrapping inside the individual lines */
               }}
             >
-              {/* Line 1 — solid + glitch */}
+              {/* Line 1 — tri-color glitch (white base + two accent layers) */}
               <span
                 className="glitch"
                 data-text={personalInfo.nameFirst}
@@ -83,16 +83,16 @@ const HeroSection = () => {
                 {personalInfo.nameFirst}
               </span>
 
-              {/* Line 2 — outline / ghost style */}
+              {/* Line 2 — outline / ghost style, with themed accent period */}
               <span
                 style={{
                   display:          'block',
                   color:            'transparent',
-                  WebkitTextStroke: '1.5px rgba(232,237,245,0.32)',
+                  WebkitTextStroke: '1.5px rgba(var(--cyan-rgb), 0.35)',
                 }}
               >
                 {personalInfo.nameLast}
-                <span style={{ WebkitTextStroke: '1.5px var(--cyan)', color: 'transparent' }}>.</span>
+                <span style={{ WebkitTextStroke: '1.5px var(--gold)', color: 'transparent' }}>.</span>
               </span>
             </h1>
 
@@ -151,7 +151,7 @@ const HeroSection = () => {
                 gridTemplateColumns: 'repeat(4, 1fr)',
                 gap:                 '1rem',
                 padding:             '1.5rem 1rem',
-                background:          'rgba(0,229,255,0.04)',
+                background:          'rgba(var(--cyan-rgb), 0.04)',
                 border:              '1px solid var(--border-color)',
                 borderRadius:        '0.75rem',
                 maxWidth:            '520px',
@@ -210,7 +210,7 @@ const HeroSection = () => {
                   style={{
                     position:   'absolute',
                     inset:      0,
-                    background: 'radial-gradient(ellipse at center, rgba(0,229,255,0.1) 0%, transparent 65%)',
+                    background: 'radial-gradient(ellipse at center, rgba(var(--cyan-rgb), 0.1) 0%, transparent 65%)',
                   }}
                 />
 
@@ -294,26 +294,26 @@ const HeroSection = () => {
           transition:   border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
         }
         .hero-video-btn:hover .hero-video-frame {
-          border-color: rgba(0,229,255,0.45);
+          border-color: rgba(var(--cyan-rgb), 0.45);
           transform:    translateY(-4px);
-          box-shadow:   0 12px 40px rgba(0,229,255,0.18);
+          box-shadow:   0 12px 40px rgba(var(--cyan-rgb), 0.18);
         }
         .hero-play-ring {
           width:           72px;
           height:          72px;
           border-radius:   50%;
-          background:      rgba(0,229,255,0.12);
-          border:          1.5px solid rgba(0,229,255,0.5);
+          background:      rgba(var(--cyan-rgb), 0.12);
+          border:          1.5px solid rgba(var(--cyan-rgb), 0.5);
           display:         flex;
           align-items:     center;
           justify-content: center;
-          box-shadow:      0 0 28px rgba(0,229,255,0.22);
+          box-shadow:      0 0 28px rgba(var(--cyan-rgb), 0.22);
           transition:      transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
         }
         .hero-video-btn:hover .hero-play-ring {
           transform:  scale(1.12);
-          background: rgba(0,229,255,0.22);
-          box-shadow: 0 0 44px rgba(0,229,255,0.35);
+          background: rgba(var(--cyan-rgb), 0.22);
+          box-shadow: 0 0 44px rgba(var(--cyan-rgb), 0.35);
         }
         /* Hide video column on very small screens */
         @media (max-width: 560px) {

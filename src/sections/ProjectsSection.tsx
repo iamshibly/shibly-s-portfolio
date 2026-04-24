@@ -68,9 +68,9 @@ const ProjectsSection = () => {
                       letterSpacing: '0.04em',
                       padding:       '0.22rem 0.65rem',
                       borderRadius:  '0.25rem',
-                      background:    'rgba(77,196,255,0.08)',
+                      background:    'rgba(var(--cyan-rgb), 0.08)',
                       color:         'var(--cyan)',
-                      border:        '1px solid rgba(77,196,255,0.2)',
+                      border:        '1px solid rgba(var(--cyan-rgb), 0.2)',
                     }}
                   >
                     {tag}

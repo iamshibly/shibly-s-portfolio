@@ -37,9 +37,21 @@ const NeuralCanvas = ({
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext('2d')!;
     let nodes: Node[] = [];
-    let comet: Comet = { x: 0, y: 0, vx: 0, vy: 0, length: 0, opacity: 0, active: false };
+    const comet: Comet = { x: 0, y: 0, vx: 0, vy: 0, length: 0, opacity: 0, active: false };
     let animId: number;
     let lastCometTime = 0;
+
+    // Read the active theme's primary accent color (RGB triple) so the
+    // canvas stays in sync with the palette switcher at runtime.
+    const readCyanRgb = () => {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue('--cyan-rgb')
+        .trim();
+      return raw || '56, 189, 248';
+    };
+    let cyanRgb = readCyanRgb();
+    const themeObserver = new MutationObserver(() => { cyanRgb = readCyanRgb(); });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -109,7 +121,7 @@ const NeuralCanvas = ({
         } else {
           const grad = ctx.createLinearGradient(comet.x, comet.y, comet.x - comet.vx * 10, comet.y - comet.vy * 10);
           grad.addColorStop(0, `rgba(240, 248, 255, ${comet.opacity})`); // white-ish core
-          grad.addColorStop(1, `rgba(77, 196, 255, 0)`); // cyan tail fade
+          grad.addColorStop(1, `rgba(${cyanRgb}, 0)`); // accent tail fade
 
           ctx.beginPath();
           ctx.strokeStyle = grad;
@@ -150,7 +162,7 @@ const NeuralCanvas = ({
           if (dist < connectionDistance) {
             const alpha = (1 - dist / connectionDistance) * opacity * 0.8; // Brighter lines
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(77,196,255,${alpha})`; // Cyan color
+            ctx.strokeStyle = `rgba(${cyanRgb}, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -165,12 +177,12 @@ const NeuralCanvas = ({
         const isLargeNode = n.r > 2.4;
 
         if (n.type === 'dot') {
-          ctx.fillStyle = `rgba(77,196,255,${opacity * pulse * 1.5})`;
+          ctx.fillStyle = `rgba(${cyanRgb}, ${opacity * pulse * 1.5})`;
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
           ctx.fill();
         } else if (n.type === 'square') {
-          ctx.fillStyle = `rgba(77,196,255,${opacity * pulse * 1.5})`;
+          ctx.fillStyle = `rgba(${cyanRgb}, ${opacity * pulse * 1.5})`;
           ctx.fillRect(n.x - n.r, n.y - n.r, n.r * 2 * pulse, n.r * 2 * pulse);
         } else if (n.type === 'star') {
           if (isLargeNode) {
@@ -181,14 +193,14 @@ const NeuralCanvas = ({
             ctx.fill();
             // Add subtle glow around large stars
             const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
-            grd.addColorStop(0, `rgba(77,196,255,${0.18 * pulse})`);
-            grd.addColorStop(1, 'rgba(77,196,255,0)');
+            grd.addColorStop(0, `rgba(${cyanRgb}, ${0.18 * pulse})`);
+            grd.addColorStop(1, `rgba(${cyanRgb}, 0)`);
             ctx.fillStyle = grd;
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
             ctx.fill();
           } else {
-            ctx.fillStyle = `rgba(77,196,255,${opacity * pulse * 1.5})`;
+            ctx.fillStyle = `rgba(${cyanRgb}, ${opacity * pulse * 1.5})`;
             drawStar(n.x, n.y, 4, n.r * 1.5 * pulse, n.r * 0.5 * pulse);
             ctx.fill();
           }
@@ -205,6 +217,7 @@ const NeuralCanvas = ({
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
+      themeObserver.disconnect();
     };
   }, [nodeCount, connectionDistance, opacity]);
 

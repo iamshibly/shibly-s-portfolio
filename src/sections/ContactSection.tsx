@@ -4,23 +4,18 @@ import { personalInfo, references } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 /*
- * ── Contact Form powered by Formspree ──────────────────────────────────────
+ * ── Contact form ─────────────────────────────────────────────────
+ * The form delivers email through Formspree if VITE_FORMSPREE_ID is
+ * configured at build time; otherwise it falls back to a local
+ * `mailto:` handoff that works for every visitor out of the box.
  *
- * HOW TO ACTIVATE REAL EMAIL DELIVERY (takes ~2 minutes, free):
- *
- *  1. Go to https://formspree.io and create a free account.
- *  2. Click "New Form", name it "Portfolio Contact".
- *  3. Copy your Form ID (looks like: xpwzrjkq).
- *  4. Replace the placeholder below with your real Form ID:
- *
- *       const FORMSPREE_ID = 'xpwzrjkq';   ← your actual ID
- *
- *  5. Save & redeploy. Every submission will be emailed to your Formspree
- *     account email (which you point to your real inbox in Settings → Email).
- *
- *  No backend, no server, no API keys needed. 50 submissions/month free.
- * ─────────────────────────────────────────────────────────────────────────── */
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // ← replace with your ID from formspree.io
+ * To enable Formspree delivery later:
+ *   1. Sign up free at https://formspree.io and create a form.
+ *   2. Set VITE_FORMSPREE_ID=<your-id> in .env (or your host's env vars).
+ *   3. Redeploy — no code change required.
+ * ───────────────────────────────────────────────────────────────── */
+const FORMSPREE_ID = (import.meta.env.VITE_FORMSPREE_ID as string | undefined)?.trim();
+const HAS_FORMSPREE = !!FORMSPREE_ID && FORMSPREE_ID.length > 0 && FORMSPREE_ID !== 'YOUR_FORMSPREE_ID';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -29,18 +24,27 @@ const ContactSection = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<Status>('idle');
 
+  const submitViaMailto = () => {
+    const subject = `Portfolio contact from ${form.name || 'a visitor'}`;
+    const body =
+      `Name: ${form.name}\n` +
+      `Email: ${form.email}\n\n` +
+      `${form.message}\n`;
+    const href =
+      `mailto:${personalInfo.email}` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // If user hasn't set up Formspree yet, explain clearly
-    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-      alert(
-        'Email delivery not yet configured.\n\n' +
-        'To enable it:\n' +
-        '1. Sign up free at formspree.io\n' +
-        '2. Create a new form\n' +
-        '3. Copy your Form ID into ContactSection.tsx'
-      );
+    if (!HAS_FORMSPREE) {
+      // Open the visitor's default mail client with the message pre-filled.
+      submitViaMailto();
+      setStatus('success');
+      setTimeout(() => setStatus('idle'), 5000);
       return;
     }
 
@@ -183,12 +187,14 @@ const ContactSection = () => {
                 <div style={{
                   display:'flex', alignItems:'center', gap:'0.5rem',
                   marginTop:'1rem', padding:'0.75rem 1rem',
-                  background:'rgba(77,196,255,0.08)', border:'1px solid rgba(77,196,255,0.3)',
+                  background:'rgba(var(--cyan-rgb), 0.08)', border:'1px solid rgba(var(--cyan-rgb), 0.3)',
                   borderRadius:'0.5rem', color:'var(--cyan)',
                   fontFamily:'var(--font-mono)', fontSize:'0.8rem',
                 }}>
                   <CheckCircle size={16} />
-                  Message sent! I'll reply within 24 hours.
+                  {HAS_FORMSPREE
+                    ? "Message sent! I'll reply within 24 hours."
+                    : 'Opening your email client — hit send there and I\u2019ll reply within 24 hours.'}
                 </div>
               )}
               {status === 'error' && (
