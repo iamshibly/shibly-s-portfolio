@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, BookOpen, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Orbit, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { personalInfo, references } from '../data/portfolio';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -80,7 +80,7 @@ const ContactSection = () => {
           {/* ── Left: Info + socials + references ──────────── */}
           <div className={`reveal ${isVisible ? 'visible' : ''}`}>
             <p className="contact-intro">
-              I'm actively looking for PhD opportunities and research collaborations.
+              I'm actively looking for Graduate Research Associate opportunities and research collaborations.
               Feel free to reach out — I usually respond within 24 hours.
             </p>
 
@@ -104,7 +104,7 @@ const ContactSection = () => {
               {[
                 { icon: <Github size={18} />,   href: personalInfo.socials.github,   label: 'GitHub' },
                 { icon: <Linkedin size={18} />, href: personalInfo.socials.linkedin, label: 'LinkedIn' },
-                { icon: <BookOpen size={18} />, href: personalInfo.socials.scholar,  label: 'Scholar' },
+                { icon: <Orbit size={18} />,    href: personalInfo.socials.orcid,    label: 'ORCID' },
               ].map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                    aria-label={s.label} className="social-btn">
@@ -170,7 +170,7 @@ const ContactSection = () => {
                   maxLength={5000}
                   value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  placeholder="I'd love to discuss a potential PhD collaboration..."
+                  placeholder="I'd love to discuss a potential Graduate Research Associate role or collaboration..."
                   className="form-input form-textarea"
                 />
               </div>

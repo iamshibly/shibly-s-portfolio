@@ -8,14 +8,21 @@ const NewsSection = () => {
   const { ref, isVisible } = useScrollReveal(0.08);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Parse a "Month YYYY" string into a sortable number (YYYYMM)
+  // Parse a "Month YYYY" or "DD Month YYYY" string into a sortable number (YYYYMMDD)
   const parseDate = (dateStr: string) => {
     const months: Record<string, number> = {
       January:1, February:2, March:3, April:4, May:5, June:6,
       July:7, August:8, September:9, October:10, November:11, December:12,
     };
-    const [month, year] = dateStr.split(' ');
-    return parseInt(year) * 100 + (months[month] ?? 0);
+    const parts = dateStr.trim().split(/\s+/);
+    let day = 1, month = '', year = '';
+    if (parts.length === 3) {
+      [ , month, year] = parts;
+      day = parseInt(parts[0]) || 1;
+    } else {
+      [month, year] = parts;
+    }
+    return parseInt(year) * 10000 + (months[month] ?? 0) * 100 + day;
   };
 
   // Sort all news items chronologically (oldest → newest)

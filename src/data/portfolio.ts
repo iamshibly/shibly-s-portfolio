@@ -9,20 +9,21 @@ export const personalInfo = {
   nameLast:   'Shibly',
   tagline:    'AI Researcher · CSE Undergraduate, Southeast University',
   description:
-    'Computer Science & Engineering student focused on Deep Learning, Transformers, Explainable AI, and data-driven modeling — applying applied AI to healthcare, network security, and decision-support systems.',
-  email:      'zubayer.shibly.cse@gmail.com',
+    'Computer Science & Engineering student focused on Deep Learning, Transformers, Federated Learning, and Explainable AI — applying applied AI to healthcare, network security, and decision-support systems.',
+  email:      'zubayer0ahmad@gmail.com',
   phone:      '+880 1845250202',
   location:   'Narayanganj, Bangladesh',
-  cvUrl:      '/portfolio-assets/pdf/CV.pdf',
+  cvUrl:      '/cv/Main_CV.pdf',
+  cvFileName: 'Md_Zubayer_Ahmad_Shibly_CV.pdf',
   /* ── Video config ────────────────────────────────────────────── */
   videoUrl:    'https://www.youtube.com/embed/dQw4w9WgXcQ',
   videoLabel:  'Introduction Video',
   videoPoster: '',
-  statusTag:  'Open for PhD / Graduate RA Positions — 2026',
+  statusTag:  'Open for Graduate Research Associate Opportunities — 2026',
   socials: {
-    scholar:  'https://scholar.google.com/',
+    orcid:    'https://orcid.org/0009-0001-0674-0240',
     github:   'https://github.com/iamshibly',
-    linkedin: 'https://www.linkedin.com/in/zubayer-shibly/',
+    linkedin: 'https://www.linkedin.com/in/iamshibly/',
   },
 } as const;
 
@@ -37,12 +38,12 @@ export const heroStats: { target: number; label: string }[] = [
 /* ─── About ──────────────────────────────────────────────────── */
 export const aboutBio: string[] = [
   "I am a Computer Science & Engineering student at Southeast University, Dhaka, with a CGPA of 4.00/4.00 and the departmental top rank in CSE.",
-  "My research focuses on Deep Learning, Transformers, Explainable AI, and feature engineering — bridging theoretical rigor with real-world impact.",
+  "My research focuses on Deep Learning, Transformers, Federated Learning, and Explainable AI — bridging theoretical rigor with real-world impact.",
   "I have contributed to applied AI projects across healthcare (ovarian cancer, PCOS, hepatitis-B, brain tumor MRI), network security (federated intrusion detection), and decision-support systems (loan approval, obesity prediction).",
   "I collaborate internationally with Dr. Maybin Muyeba (University of Salford, UK) and Rajon Bardhan (Augusta University, USA) on federated learning, evolutionary feature selection, and explainable modeling.",
   "Inspired by the principle of “Know Thyself,” I value self-discovery, continuous growth, and the craft of doing research that is both rigorous and useful.",
   "Beyond the lab, I serve as Director of Project Management at Roots of Rise and contribute to community learning initiatives as an Aspire Leaders Program alumnus.",
-  "I am actively seeking PhD opportunities to extend this work in trustworthy, explainable, and federated AI for healthcare.",
+  "I am actively seeking Graduate Research Associate opportunities to extend this work in trustworthy, explainable, and federated AI for healthcare.",
 ];
 
 export const researchInterests: string[] = [
@@ -60,7 +61,7 @@ export const researchInterests: string[] = [
 ];
 
 export const hobbies: string[] = [
-  'Debating', 'Reading', 'Writing', 'Volunteering',
+  'Football', 'Traveling', 'Watching Movies', 'Animation', 'Manga',
 ];
 
 /* ─── Education ──────────────────────────────────────────────── */
@@ -395,10 +396,18 @@ export const skillGroups: SkillGroup[] = [
   {
     groupTitle: 'AI / ML Research',
     skills: [
-      { name: 'Deep Learning & Transformers', level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
-      { name: 'Explainable AI',               level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
-      { name: 'Feature Engineering & Selection', level: 90, tags: ['Genetic FS', 'RFE', 'QUBO', 'Stability'] },
-      { name: 'Federated & Privacy-Preserving ML', level: 82, tags: ['FedAvg', 'Self-Supervision', 'Interpretable'] },
+      { name: 'Deep Learning & Transformers',      level: 92, tags: ['PyTorch', 'Transformers', 'Attention', 'CNNs'] },
+      { name: 'Federated & Privacy-Preserving ML', level: 88, tags: ['FedAvg', 'FedProx', 'Secure Aggregation', 'Differential Privacy', 'Non-IID', 'Self-Supervision', 'Interpretable'] },
+      { name: 'Explainable AI',                    level: 90, tags: ['SHAP', 'LIME', 'PDP', 'ICE', 'ALE'] },
+      { name: 'Feature Engineering & Selection',   level: 90, tags: ['Genetic FS', 'RFE', 'QUBO', 'Stability'] },
+    ],
+  },
+  {
+    groupTitle: 'LLM / Agents',
+    skills: [
+      { name: 'Agent Frameworks',        level: 82, tags: ['LangChain', 'LangGraph', 'Agents', 'Tools'] },
+      { name: 'Retrieval-Augmented Generation', level: 80, tags: ['RAG', 'Vector Stores', 'Embeddings'] },
+      { name: 'Chains & Parsers',        level: 80, tags: ['Chains', 'Output Parsers', 'Prompt Templates'] },
     ],
   },
   {
@@ -406,7 +415,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'Data Analysis & Statistics',   level: 88, tags: ['NumPy', 'Pandas', 'Experimental Design'] },
       { name: 'Programming',                  level: 85, tags: ['Python', 'C', 'Java', 'Dart', 'Flutter'] },
-      { name: 'Tools & Workflows',            level: 85, tags: ['scikit-learn', 'Matplotlib', 'Jupyter', 'Colab', 'Git', 'Overleaf'] },
+      { name: 'Tools & Workflows',            level: 85, tags: ['scikit-learn', 'Matplotlib', 'Jupyter', 'Colab', 'Git', 'Overleaf', 'FastAPI', 'Next.js', 'TypeScript'] },
       { name: 'Databases & Productivity',     level: 75, tags: ['MySQL', 'MongoDB', 'LaTeX', 'Excel'] },
     ],
   },
@@ -424,8 +433,6 @@ export const certifications: Certification[] = [
   { name: 'Foundations of Project Management',                           issuer: 'Coursera — Jun 2024' },
   { name: 'Cybersecurity Foundations',                                   issuer: 'LinkedIn Learning — Feb 2024' },
   { name: 'ENGL210: Technical Writing',                                  issuer: 'Saylor Academy — Feb 2024' },
-  { name: 'Webinar on Programming Contest & Research',                   issuer: 'IEEE Computer Society, SEU SBC — Dec 2025' },
-  { name: 'LaTeX Unlocked: The Research Writing Workshop',               issuer: 'IEEE Computer Society, SEU SBC — Dec 2025' },
 ];
 
 /* ─── Awards ─────────────────────────────────────────────────── */
@@ -466,13 +473,21 @@ export const news: NewsItem[] = [
   {
     id: '2',
     date: 'February 2026',
+    title: 'Selected in Top 22 of 650 — Harvard HSIL Hackathon 2026 (Dhaka Hub)',
+    summary: 'Team MedSophia AI was selected among the top 22 teams out of 650 applicants at the 7th Edition of the Harvard HSIL Hackathon (Dhaka Hub), organised by the Harvard T.H. Chan School of Public Health — Health Systems Innovation Lab.',
+    image: '/news/harvard-hackathon-2026.jpg',
+    featured: true,
+  },
+  {
+    id: '3',
+    date: 'February 2026',
     title: 'Two Papers Accepted at IEEE FUZZ 2026 and SERA 2026',
     summary: 'Our collaborative work with Dr. Maybin Muyeba on federated explainable intrusion detection (IEEE FUZZ 2026, Netherlands) and FedBridge++ for tabular loan approval (SERA 2026, USA) has been accepted.',
     image: 'https://picsum.photos/seed/news-fuzz/800/450',
     featured: false,
   },
   {
-    id: '3',
+    id: '4',
     date: 'January 2026',
     title: 'Three Papers Submitted to A* Venues',
     summary: 'Submitted UADGE-FS and TRUST-GFS (collaboration with Rajon Bardhan, Augusta University) to ICDM 2026 and NeurIPS 2026 — two A* venues — on uncertainty-aware and reliability-aware evolutionary feature selection.',
@@ -480,15 +495,23 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '4',
-    date: 'December 2025',
-    title: 'Completed LaTeX Research Writing Workshop',
-    summary: 'Attended "LaTeX Unlocked: The Research Writing Workshop" organized by the IEEE Computer Society, SEU Student Branch Chapter.',
-    image: 'https://picsum.photos/seed/news-latex/800/450',
+    id: '5',
+    date: '26 December 2025',
+    title: 'Attended IEEE CS SEU SBC Webinar — Programming Contest & Research',
+    summary: 'Attended the "Programming Contest & Research" webinar organised by IEEE Computer Society, SEU Student Branch Chapter. Speaker: Rajon Bardhan (Graduate Research Student, Computer & Cyber Sciences, Augusta University).',
+    image: '/news/webinar-programming-contest-2025.jpg',
     featured: false,
   },
   {
-    id: '5',
+    id: '6',
+    date: '17 November 2025',
+    title: 'Attended IEEE CS SEU SBC Workshop — LaTeX Unlocked: Research Writing',
+    summary: 'Attended "LaTeX Unlocked: The Research Writing Workshop" organised by IEEE Computer Society, SEU Student Branch Chapter. Session facilitator: Maksuda Rabeya (Graduate Research Assistant, Augusta University).',
+    image: '/news/webinar-latex-2025.jpg',
+    featured: false,
+  },
+  {
+    id: '7',
     date: 'November 2025',
     title: 'Three Papers Accepted at ICCCNT 2025 and ICCIT 2025',
     summary: 'Our work on multi-algorithmic feature selection for PCOS (ICCCNT 2025, India) and hybrid ensemble + XAI approaches for Hepatitis-B mortality risk and PCOS diagnosis (ICCIT 2025, Bangladesh) has been accepted.',
@@ -496,7 +519,7 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '6',
+    id: '8',
     date: 'September 2025',
     title: 'Appointed Director of Project Management at Roots of Rise',
     summary: 'Honored to take on the role of Director of Project Management at Roots of Rise, an NGO focused on education and community impact.',
@@ -504,7 +527,7 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '7',
+    id: '9',
     date: 'June 2025',
     title: 'Aspire Institute Awards — Leadership Recognition',
     summary: 'Recognized at the Aspire Institute Awards through the Aspire Leaders Program 2025 for leadership and community contribution.',
@@ -512,7 +535,7 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '8',
+    id: '10',
     date: 'May 2025',
     title: 'Completed IMUN Campus Ambassador Internship',
     summary: 'Wrapped up my Campus Ambassador Internship with the International Model United Nations (IMUN), earning certification, an offer letter, and conference participation.',
@@ -520,7 +543,7 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '9',
+    id: '11',
     date: 'March 2025',
     title: 'Advanced Research in ML & XAI — Certified',
     summary: 'Completed certification in Advanced Research in Machine Learning & Explainable AI from Neural Research.',
@@ -528,7 +551,7 @@ export const news: NewsItem[] = [
     featured: false,
   },
   {
-    id: '10',
+    id: '12',
     date: 'July 2022',
     title: 'Started B.Sc. in CSE at Southeast University',
     summary: 'Began the B.Sc. in Computer Science and Engineering at Southeast University with a full tuition waiver scholarship — currently holding a CGPA of 4.00/4.00.',
