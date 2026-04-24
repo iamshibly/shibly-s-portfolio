@@ -34,16 +34,16 @@ const CertificationsSection = () => {
                 gap:                 '1.25rem',
                 alignItems:          'center',
                 padding:             '1.25rem 1.5rem',
-                background:          'rgba(77,196,255,0.04)',
-                border:              '1px solid rgba(77,196,255,0.14)',
-                borderLeft:          '3px solid rgba(77,196,255,0.6)',
+                background:          'rgba(var(--cyan-rgb), 0.04)',
+                border:              '1px solid rgba(var(--cyan-rgb), 0.14)',
+                borderLeft:          '3px solid rgba(var(--cyan-rgb), 0.6)',
                 borderRadius:        'var(--radius)',
               }}
             >
               <div style={{
                 width: '2rem', height: '2rem',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(77,196,255,0.12)',
+                background: 'rgba(var(--cyan-rgb), 0.12)',
                 borderRadius: '50%',
                 color: 'var(--cyan)',
                 flexShrink: 0,

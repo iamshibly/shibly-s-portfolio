@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import NeuralCanvas from '../components/NeuralCanvas';
+import PaletteSwitcher from '../components/PaletteSwitcher';
 import TopNav from './TopNav';
 
 interface Props {
@@ -26,6 +27,7 @@ const Layout = ({ children }: Props) => {
       <main style={{ position: 'relative', zIndex: 2 }}>
         {children}
       </main>
+      <PaletteSwitcher />
     </>
   );
 };

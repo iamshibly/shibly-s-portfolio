@@ -93,7 +93,7 @@ const SkillsSection = () => {
                         style={{
                           height:       '100%',
                           width:        isVisible ? `${skill.level}%` : '0%',
-                          background:   `linear-gradient(90deg, var(--cyan) 0%, rgba(77,196,255,0.5) 100%)`,
+                          background:   `linear-gradient(90deg, var(--cyan) 0%, rgba(var(--cyan-rgb), 0.5) 100%)`,
                           borderRadius: '2px',
                           transition:   `width 1.3s cubic-bezier(0.4,0,0.2,1) ${gi * 0.1 + si * 0.12}s`,
                           position:     'relative',

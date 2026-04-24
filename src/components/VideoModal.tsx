@@ -84,7 +84,7 @@ const VideoModal = ({ url, isOpen, onClose }: Props) => {
             cursor:          'none',
             transition:      'background 0.2s',
           }}
-          onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(0,229,255,0.15)')}
+          onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(var(--cyan-rgb), 0.15)')}
           onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.6)')}
         >
           <X size={18} />

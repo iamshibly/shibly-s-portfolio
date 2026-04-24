@@ -96,7 +96,7 @@ const AboutSection = () => {
                     alignItems:     'center',
                     justifyContent: 'center',
                     gap:            '0.5rem',
-                    background:     'linear-gradient(135deg, rgba(0,229,255,0.08), rgba(255,209,102,0.06))',
+                    background:     'linear-gradient(135deg, rgba(var(--cyan-rgb), 0.08), rgba(255,209,102,0.06))',
                   }}
                 >
                   <div

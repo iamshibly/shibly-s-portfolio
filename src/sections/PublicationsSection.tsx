@@ -7,9 +7,9 @@ const FILTERS: Array<'All' | PubType> = ['All', 'Journal', 'International Confer
 
 const statusStyle = (status: string): React.CSSProperties => {
   if (status === 'Published') return {
-    background: 'rgba(0,229,255,0.1)',
+    background: 'rgba(var(--cyan-rgb), 0.1)',
     color:      'var(--cyan)',
-    border:     '1px solid rgba(0,229,255,0.2)',
+    border:     '1px solid rgba(var(--cyan-rgb), 0.2)',
   };
   if (status === 'Under Review') return {
     background: 'rgba(255,209,102,0.1)',
@@ -79,7 +79,7 @@ const PublicationsSection = () => {
                   padding:       '0.45rem 1rem',
                   borderRadius:  '0.35rem',
                   border:        `1px solid ${active ? 'var(--cyan)' : 'var(--border-color)'}`,
-                  background:    active ? 'rgba(0,229,255,0.12)' : 'transparent',
+                  background:    active ? 'rgba(var(--cyan-rgb), 0.12)' : 'transparent',
                   color:         active ? 'var(--cyan)' : 'var(--muted)',
                   cursor:        'none',
                   transition:    'all 0.2s',
